@@ -9,6 +9,18 @@
 #import <Cocoa/Cocoa.h>
 #import <AlphaBeta/AlphaBetaState.h>
 
+enum {
+     BLACK = -1,
+     EMPTY,
+     WHITE
+};
+
+enum {
+    DIAMOND = 1,
+    TRIANGLE,
+    SQUARE,
+    CIRCLE
+};
 
 @interface PhageState : NSObject <AlphaBetaStateWithUndo> {
     int board[8][8];
@@ -16,4 +28,5 @@
     int turn;
 }
 
+- (NSString *)string;
 @end

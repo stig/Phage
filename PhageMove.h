@@ -20,4 +20,5 @@
 -(unsigned)col;
 -(int)dRow;
 -(int)dCol;
+-(NSString *)string;
 @end

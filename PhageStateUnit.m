@@ -26,12 +26,16 @@
     PhageMove *m;
     
     STAssertNotNil(m = [PhageMove newWithRow:3 col:7 deltaRow:3 deltaCol:-1], nil);
-    STAssertEquals([m col], (unsigned)7, nil);
     STAssertEquals([m row], (unsigned)3, nil);
-    
-//    STAssertThrows([PhageMove newWithCol:9], @"failed to throw exception for invalid move");
-//    STAssertThrows([PhageMove newWithCol:-1], @"failed to throw exception for invalid move");
+    STAssertEquals([m col], (unsigned)7, nil);
+    STAssertEquals([m dRow], (int)3, nil);
+    STAssertEquals([m dCol], (int)-1, nil);
+    STAssertEqualObjects([m string], @"373-1", nil);
 }
 
+- (void)testApplyMove
+{
+    STAssertEqualObjects([s string], @"D....... ..T..... .....S.. ......C. .c...... ...s.... .....t.. .......d 77777777", nil);
+}
 
 @end

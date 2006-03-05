@@ -32,6 +32,11 @@
     return [[PhageMove alloc] initWithRow:r col:c deltaRow:dr deltaCol:dc];
 }
 
+- (BOOL)isEqual:(id)o
+{
+    return row == [o row] && col == [o col] && dRow == [o dRow] && dCol == [o dCol];
+}
+
 -(unsigned)row
 {
     return row;
@@ -50,6 +55,11 @@
 -(int)dCol
 {
     return dCol;
+}
+
+-(NSString *)string
+{
+    return [NSString stringWithFormat:@"%d%d%d%d", row, col, dRow, dCol];
 }
 
 @end

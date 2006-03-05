@@ -208,8 +208,8 @@
 			isa = PBXGroup;
 			children = (
 				532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */,
-				532428EA098D11E600BDE982 /* UnitTests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				532428EA098D11E600BDE982 /* UnitTests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
