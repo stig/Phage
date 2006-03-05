@@ -13,6 +13,9 @@
     int dRow, dCol;
 }
 
++(id)newWithRow:(unsigned)r col:(unsigned)c deltaRow:(int)dr deltaCol:(int)dc;
+-(id)initWithRow:(unsigned)r col:(unsigned)c deltaRow:(int)dr deltaCol:(int)dc;
+
 -(unsigned)row;
 -(unsigned)col;
 -(int)dRow;

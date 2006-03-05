@@ -12,10 +12,16 @@
 		532428CC098D0C5400BDE982 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 532428CB098D0C5400BDE982 /* PhageState.m */; };
 		532428EE098D120D00BDE982 /* PhageStateUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 532428ED098D120D00BDE982 /* PhageStateUnit.m */; };
 		532428FB098D135700BDE982 /* PhageMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 532428FA098D135700BDE982 /* PhageMove.m */; };
+		53242963098E08BC00BDE982 /* ABGame.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 532428A1098D0BE500BDE982 /* ABGame.framework */; };
+		53242964098E08BC00BDE982 /* AlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 532428A2098D0BE500BDE982 /* AlphaBeta.framework */; };
+		53242969098E095300BDE982 /* ABGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532428C5098D0C1B00BDE982 /* ABGame.framework */; };
+		5324296A098E095400BDE982 /* AlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 532428BD098D0C1B00BDE982 /* AlphaBeta.framework */; };
+		53EBE3FC098EA60E00F96E78 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		53EBE417098EA6FE00F96E78 /* PhageMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 532428FA098D135700BDE982 /* PhageMove.m */; };
+		53EBE418098EA70100F96E78 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 532428CB098D0C5400BDE982 /* PhageState.m */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
@@ -50,59 +56,66 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* AlphaBeta.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = AlphaBeta;
 		};
 		532428BE098D0C1B00BDE982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 53C397CD095566D700E6E128 /* Reversi.framework */;
+			remoteGlobalIDString = 53C397CD095566D700E6E128;
 			remoteInfo = Reversi;
 		};
 		532428C0098D0C1B00BDE982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 5357B5180955D68100E12436 /* TicTacToe.framework */;
+			remoteGlobalIDString = 5357B5180955D68100E12436;
 			remoteInfo = TicTacToe;
 		};
 		532428C2098D0C1B00BDE982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 53238ECB0963622C0064AFCD /* UnitTests.octest */;
+			remoteGlobalIDString = 53238ECB0963622C0064AFCD;
 			remoteInfo = UnitTests;
 		};
 		532428C4098D0C1B00BDE982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 53E58C45098569B700234A93 /* ABGame.framework */;
+			remoteGlobalIDString = 53E58C45098569B700234A93;
 			remoteInfo = ABGame;
-		};
-		532428C6098D0C2A00BDE982 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* AlphaBeta */;
-			remoteInfo = AlphaBeta;
 		};
 		532428C8098D0C2A00BDE982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 53E58C44098569B700234A93 /* ABGame */;
+			remoteGlobalIDString = 53E58C44098569B700234A93;
 			remoteInfo = ABGame;
 		};
-		532428E7098D11D800BDE982 /* PBXContainerItemProxy */ = {
+		53242928098E030800BDE982 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			containerPortal = 532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090 /* Phage */;
-			remoteInfo = Phage;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = AlphaBeta;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5324295B098E089A00BDE982 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				53242963098E08BC00BDE982 /* ABGame.framework in CopyFiles */,
+				53242964098E08BC00BDE982 /* AlphaBeta.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -140,9 +153,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				532428A3098D0BE500BDE982 /* ABGame.framework in Frameworks */,
 				532428A4098D0BE500BDE982 /* AlphaBeta.framework in Frameworks */,
+				53242969098E095300BDE982 /* ABGame.framework in Frameworks */,
+				5324296A098E095400BDE982 /* AlphaBeta.framework in Frameworks */,
+				53EBE3FC098EA60E00F96E78 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,6 +167,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				532428F9098D135700BDE982 /* PhageMove.h */,
+				532428FA098D135700BDE982 /* PhageMove.m */,
 				532428CA098D0C5400BDE982 /* PhageState.h */,
 				532428CB098D0C5400BDE982 /* PhageState.m */,
 			);
@@ -190,8 +207,8 @@
 		29B97314FDCFA39411CA2CEA /* Phage */ = {
 			isa = PBXGroup;
 			children = (
-				532428EA098D11E600BDE982 /* UnitTests */,
 				532428B3098D0C1A00BDE982 /* AlphaBeta.xcodeproj */,
+				532428EA098D11E600BDE982 /* UnitTests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -247,8 +264,6 @@
 			children = (
 				532428EC098D120D00BDE982 /* PhageStateUnit.h */,
 				532428ED098D120D00BDE982 /* PhageStateUnit.m */,
-				532428F9098D135700BDE982 /* PhageMove.h */,
-				532428FA098D135700BDE982 /* PhageMove.m */,
 			);
 			name = UnitTests;
 			sourceTree = "<group>";
@@ -296,7 +311,6 @@
 				WRAPPER_EXTENSION = octest;
 			};
 			dependencies = (
-				532428E8098D11D800BDE982 /* PBXTargetDependency */,
 			);
 			name = UnitTests;
 			productName = UnitTests;
@@ -331,6 +345,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				5324295B098E089A00BDE982 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -346,8 +361,8 @@
 				WRAPPER_EXTENSION = app;
 			};
 			dependencies = (
-				532428C7098D0C2A00BDE982 /* PBXTargetDependency */,
 				532428C9098D0C2A00BDE982 /* PBXTargetDependency */,
+				53242929098E030800BDE982 /* PBXTargetDependency */,
 			);
 			name = Phage;
 			productInstallPath = "$(HOME)/Applications";
@@ -462,6 +477,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				532428EE098D120D00BDE982 /* PhageStateUnit.m in Sources */,
+				53EBE417098EA6FE00F96E78 /* PhageMove.m in Sources */,
+				53EBE418098EA70100F96E78 /* PhageState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,20 +495,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		532428C7098D0C2A00BDE982 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AlphaBeta;
-			targetProxy = 532428C6098D0C2A00BDE982 /* PBXContainerItemProxy */;
-		};
 		532428C9098D0C2A00BDE982 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ABGame;
 			targetProxy = 532428C8098D0C2A00BDE982 /* PBXContainerItemProxy */;
 		};
-		532428E8098D11D800BDE982 /* PBXTargetDependency */ = {
+		53242929098E030800BDE982 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D1107260486CEB800E47090 /* Phage */;
-			targetProxy = 532428E7098D11D800BDE982 /* PBXContainerItemProxy */;
+			name = AlphaBeta;
+			targetProxy = 53242928098E030800BDE982 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -595,6 +607,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -603,7 +616,7 @@
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -628,6 +641,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -636,7 +650,7 @@
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -660,6 +674,7 @@
 		532428E6098D11CE00BDE982 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../AlphaBeta/build/Release\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -668,7 +683,7 @@
 				INFOPLIST_FILE = "UnitTests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
 					"-framework",
