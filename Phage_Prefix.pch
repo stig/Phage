@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'Phage' target in the 'Phage' project
-//
-
-#ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-#endif
