@@ -85,6 +85,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return moves;
 }
 
+- (float)currentFitness
+{
+    unsigned me = [[self movesAvailable] count];
+
+    player = player == White ? Black : White;
+    unsigned you = [[self movesAvailable] count];
+
+    player = player == White ? Black : White;
+    return (float)me - you;
+}
 
 - (NSArray *)movesAvailable
 {
