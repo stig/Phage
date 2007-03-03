@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53B34C750B98FE20008A5C6D /* RedDiamond.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C740B98FE20008A5C6D /* RedDiamond.eps */; };
+		53B34C820B98FF7F008A5C6D /* YellowTriangle.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C7B0B98FF7F008A5C6D /* YellowTriangle.eps */; };
+		53B34C830B98FF7F008A5C6D /* YellowSquare.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C7C0B98FF7F008A5C6D /* YellowSquare.eps */; };
+		53B34C840B98FF7F008A5C6D /* YellowDiamond.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C7D0B98FF7F008A5C6D /* YellowDiamond.eps */; };
+		53B34C850B98FF7F008A5C6D /* YellowCircle.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C7E0B98FF7F008A5C6D /* YellowCircle.eps */; };
+		53B34C860B98FF7F008A5C6D /* RedTriangle.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C7F0B98FF7F008A5C6D /* RedTriangle.eps */; };
+		53B34C870B98FF7F008A5C6D /* RedSquare.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C800B98FF7F008A5C6D /* RedSquare.eps */; };
+		53B34C880B98FF7F008A5C6D /* RedCircle.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34C810B98FF7F008A5C6D /* RedCircle.eps */; };
+		53B34CCB0B990325008A5C6D /* Empty.eps in Resources */ = {isa = PBXBuildFile; fileRef = 53B34CCA0B990325008A5C6D /* Empty.eps */; };
 		53D26BA90B982571001F83A5 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26BAE0B982595001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
 		53D26BB10B9825A5001F83A5 /* PhageMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BB00B9825A5001F83A5 /* PhageMove.m */; };
@@ -14,6 +23,9 @@
 		53D26C320B982CF0001F83A5 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26C3C0B982D2C001F83A5 /* PhageMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BB00B9825A5001F83A5 /* PhageMove.m */; };
 		53D26C3D0B982D2D001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
+		53D26CE90B987589001F83A5 /* Phage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26CE80B987589001F83A5 /* Phage.m */; };
+		53D26CF20B9875B2001F83A5 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26CF00B9875B2001F83A5 /* BoardView.m */; };
+		53D26D200B98802F001F83A5 /* Dirty.png in Resources */ = {isa = PBXBuildFile; fileRef = 53D26D1E0B98802F001F83A5 /* Dirty.png */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -25,7 +37,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D1107260486CEB800E47090 /* Phage */;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
 			remoteInfo = Phage;
 		};
 /* End PBXContainerItemProxy section */
@@ -39,6 +51,15 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Phage_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phage_Prefix.pch; sourceTree = "<group>"; };
+		53B34C740B98FE20008A5C6D /* RedDiamond.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RedDiamond.eps; path = graphics/RedDiamond.eps; sourceTree = "<group>"; };
+		53B34C7B0B98FF7F008A5C6D /* YellowTriangle.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YellowTriangle.eps; path = graphics/YellowTriangle.eps; sourceTree = "<group>"; };
+		53B34C7C0B98FF7F008A5C6D /* YellowSquare.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YellowSquare.eps; path = graphics/YellowSquare.eps; sourceTree = "<group>"; };
+		53B34C7D0B98FF7F008A5C6D /* YellowDiamond.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YellowDiamond.eps; path = graphics/YellowDiamond.eps; sourceTree = "<group>"; };
+		53B34C7E0B98FF7F008A5C6D /* YellowCircle.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = YellowCircle.eps; path = graphics/YellowCircle.eps; sourceTree = "<group>"; };
+		53B34C7F0B98FF7F008A5C6D /* RedTriangle.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RedTriangle.eps; path = graphics/RedTriangle.eps; sourceTree = "<group>"; };
+		53B34C800B98FF7F008A5C6D /* RedSquare.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RedSquare.eps; path = graphics/RedSquare.eps; sourceTree = "<group>"; };
+		53B34C810B98FF7F008A5C6D /* RedCircle.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = RedCircle.eps; path = graphics/RedCircle.eps; sourceTree = "<group>"; };
+		53B34CCA0B990325008A5C6D /* Empty.eps */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Empty.eps; path = graphics/Empty.eps; sourceTree = "<group>"; };
 		53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../Library/Frameworks/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
 		53D26BAC0B982595001F83A5 /* PhageState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhageState.h; sourceTree = "<group>"; };
 		53D26BAD0B982595001F83A5 /* PhageState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhageState.m; sourceTree = "<group>"; };
@@ -48,6 +69,11 @@
 		53D26BB30B9825C5001F83A5 /* PhageUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhageUnit.m; sourceTree = "<group>"; };
 		53D26BBB0B982609001F83A5 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
 		53D26C2D0B982CC7001F83A5 /* Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		53D26CE70B987589001F83A5 /* Phage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phage.h; sourceTree = "<group>"; };
+		53D26CE80B987589001F83A5 /* Phage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phage.m; sourceTree = "<group>"; };
+		53D26CF00B9875B2001F83A5 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		53D26CF10B9875B2001F83A5 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		53D26D1E0B98802F001F83A5 /* Dirty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dirty.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Phage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -76,10 +102,14 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				53D26CF10B9875B2001F83A5 /* BoardView.h */,
+				53D26CF00B9875B2001F83A5 /* BoardView.m */,
 				53D26BAF0B9825A5001F83A5 /* PhageMove.h */,
 				53D26BB00B9825A5001F83A5 /* PhageMove.m */,
 				53D26BAC0B982595001F83A5 /* PhageState.h */,
 				53D26BAD0B982595001F83A5 /* PhageState.m */,
+				53D26CE70B987589001F83A5 /* Phage.h */,
+				53D26CE80B987589001F83A5 /* Phage.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -120,7 +150,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				53D26BBB0B982609001F83A5 /* Test-Info.plist */,
 			);
 			name = Phage;
 			sourceTree = "<group>";
@@ -139,7 +168,18 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53B34CCA0B990325008A5C6D /* Empty.eps */,
+				53B34C7B0B98FF7F008A5C6D /* YellowTriangle.eps */,
+				53B34C7C0B98FF7F008A5C6D /* YellowSquare.eps */,
+				53B34C7D0B98FF7F008A5C6D /* YellowDiamond.eps */,
+				53B34C7E0B98FF7F008A5C6D /* YellowCircle.eps */,
+				53B34C7F0B98FF7F008A5C6D /* RedTriangle.eps */,
+				53B34C800B98FF7F008A5C6D /* RedSquare.eps */,
+				53B34C810B98FF7F008A5C6D /* RedCircle.eps */,
+				53B34C740B98FE20008A5C6D /* RedDiamond.eps */,
+				53D26D1E0B98802F001F83A5 /* Dirty.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				53D26BBB0B982609001F83A5 /* Test-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
 			);
@@ -225,6 +265,16 @@
 			files = (
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				53D26D200B98802F001F83A5 /* Dirty.png in Resources */,
+				53B34C750B98FE20008A5C6D /* RedDiamond.eps in Resources */,
+				53B34C820B98FF7F008A5C6D /* YellowTriangle.eps in Resources */,
+				53B34C830B98FF7F008A5C6D /* YellowSquare.eps in Resources */,
+				53B34C840B98FF7F008A5C6D /* YellowDiamond.eps in Resources */,
+				53B34C850B98FF7F008A5C6D /* YellowCircle.eps in Resources */,
+				53B34C860B98FF7F008A5C6D /* RedTriangle.eps in Resources */,
+				53B34C870B98FF7F008A5C6D /* RedSquare.eps in Resources */,
+				53B34C880B98FF7F008A5C6D /* RedCircle.eps in Resources */,
+				53B34CCB0B990325008A5C6D /* Empty.eps in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,6 +314,8 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				53D26BAE0B982595001F83A5 /* PhageState.m in Sources */,
 				53D26BB10B9825A5001F83A5 /* PhageMove.m in Sources */,
+				53D26CE90B987589001F83A5 /* Phage.m in Sources */,
+				53D26CF20B9875B2001F83A5 /* BoardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +460,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
@@ -417,6 +470,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;

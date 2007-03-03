@@ -1,4 +1,13 @@
 {
-    IBClasses = ({CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }); 
+    IBClasses = (
+        {CLASS = BoardView; LANGUAGE = ObjC; SUPERCLASS = NSMatrix; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = Phage; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {board = BoardView; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
     IBVersion = 1; 
 }

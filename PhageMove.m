@@ -54,4 +54,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return [NSString stringWithFormat:@"[%u,%u] to [%u,%u]", srcRow, srcCol, dstRow, dstCol];
 }
 
+
+- (BOOL)isEqual:(id)o
+{
+    return srcRow == [o srcRow] && srcCol == [o srcCol] && dstRow == [o dstRow] && dstCol == [o dstCol];
+}
+
+
 @end
