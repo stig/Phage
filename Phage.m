@@ -25,23 +25,39 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 @implementation Phage
 
 
+- (NSArray *)chopImage:(NSImage *)image rows:(unsigned)rows columns:(unsigned)cols
+{
+    id a = [NSMutableArray array];
+    
+    NSSize imgsize = [image size];
+    for (int r = 0; r < rows; r++) {
+        for (int c = 0; c < cols; c++) {
+            
+            id img = [[NSImage alloc] initWithSize:NSMakeSize(100, 100)];
+        
+            /* fugly, but the simplest way of determining the source rectancle */
+            NSRect src = NSMakeRect(imgsize.width / (float)cols * c,
+                                    imgsize.height - (imgsize.height / (float)rows) * (1.0 + r),
+                                    imgsize.width / (float)cols,
+                                    imgsize.height / (float)rows);
+        
+            [img lockFocus];
+            [image drawInRect:NSMakeRect(0, 0, 100, 100)
+                    fromRect:src
+                   operation:NSCompositeCopy
+                    fraction:1.0];
+            [img unlockFocus];
+            [a addObject:[img autorelease]];
+        }
+    }
+    return a;
+}
+
 - (void)awakeFromNib
 {
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
-    [board setTheme:[NSArray arrayWithObjects:
-        [NSImage imageNamed:@"Empty"],
-        [NSImage imageNamed:@"RedCircle"],
-        [NSImage imageNamed:@"RedDiamond"],
-        [NSImage imageNamed:@"RedSquare"],
-        [NSImage imageNamed:@"RedTriangle"],
-        [NSImage imageNamed:@"YellowCircle"],
-        [NSImage imageNamed:@"YellowDiamond"],
-        [NSImage imageNamed:@"YellowSquare"],
-        [NSImage imageNamed:@"YellowTriangle"],
-        [NSImage imageNamed:@"Dirty"],
-        nil]];
-        
+    [board setTheme:[self chopImage:[NSImage imageNamed:@"pieces"] rows:2 columns: 5]];
     [self resetGame];
 }
 
