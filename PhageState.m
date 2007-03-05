@@ -55,7 +55,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return self;
 }
 
-- (NSArray *)moveR:(int)r c:(int)c direction:(int)dir
+- (NSArray *)moveFromRow:(int)r col:(int)c inDirection:(int)dir
 {
     int p = board[r][c];
     id moves = [NSMutableArray array];
@@ -134,7 +134,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                     continue;
                 
                 }
-                [moves addObjectsFromArray:[self moveR:r c:c direction:d]];
+                [moves addObjectsFromArray:[self moveFromRow:r col:c inDirection:d]];
             }
         }
     }
