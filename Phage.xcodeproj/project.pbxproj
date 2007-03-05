@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		532943FE0B99D06800496CB5 /* pieces.png in Resources */ = {isa = PBXBuildFile; fileRef = 532943FD0B99D06800496CB5 /* pieces.png */; };
+		532944A00B9C2BE100496CB5 /* SBAlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26BA90B982571001F83A5 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26BAE0B982595001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
 		53D26BB10B9825A5001F83A5 /* PhageMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BB00B9825A5001F83A5 /* PhageMove.m */; };
@@ -32,6 +33,19 @@
 			remoteInfo = Phage;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5329449A0B9C2BBF00496CB5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				532944A00B9C2BE100496CB5 /* SBAlphaBeta.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -197,6 +211,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				5329449A0B9C2BBF00496CB5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
