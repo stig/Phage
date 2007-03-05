@@ -180,7 +180,7 @@ and updates views in between. */
 
 - (void)updateViews
 {
-    [board setState:[[ab state] array]];
+    [board setState:[[ab state] array] moves:[ab movesAvailable]];
     [board setNeedsDisplay:YES];
     [[board window] display];
 }

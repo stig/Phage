@@ -21,6 +21,7 @@
 #import "BoardView.h"
 #import "Phage.h"
 #import "PhageState.h"
+#import "PhageMove.h"
 
 @implementation BoardView
 
@@ -60,11 +61,9 @@
     map[ White | Triangle ] = 8;
     map[ Dirty ] = 9;
 
-    int r, c;
-    for (r = 0; r < rows; r++) {
-        for (c = 0; c < cols; c++) {
+    for (int r = 0; r < rows; r++) {
+        for (int c = 0; c < cols; c++) {
             int slot = [[[state objectAtIndex:r] objectAtIndex:c] intValue];
-
             NSImageCell *ic = [self cellAtRow:r column:c];
             [ic setImage:[disks objectAtIndex:map[slot]]];
             [ic setImageScaling:NSScaleToFit];
@@ -75,8 +74,13 @@
     [self setNeedsDisplay:YES];
 }
 
-- (void)setState:(id)this
+- (void)setState:(NSArray *)this moves:(NSArray *)moves
 {
+    if (legalMoves != moves) {
+        [legalMoves release];
+        legalMoves = [moves retain];
+    }
+
     if (state != this) {
         [state release];
         state = [this retain];
@@ -106,7 +110,39 @@
     NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
     int r, c;
     [self getRow:&r column:&c forPoint:p];
-//    [controller clickAtRow:r col:c];
+    
+    if (!selectedOrigin) {
+        for (int i = 0; i < [legalMoves count]; i++) {
+            id o = [legalMoves objectAtIndex:i];
+            if ([o srcRow] == r && [o srcCol] == c) {
+                NSLog(@"setting origin");
+                selectedOrigin = YES;
+                srcRow = r;
+                srcCol = c;
+                break;
+            }
+        }
+        if (!selectedOrigin)
+            NSLog(@"Illegal move");
+
+        
+    } else if (r == srcRow && c == srcCol) {
+        NSLog(@"unsetting origin");
+        selectedOrigin = NO;
+        
+    } else {
+        id move = [PhageMove moveFromR:srcRow c:srcCol toR:r c:c];
+        if ([legalMoves indexOfObject:move] == NSNotFound) {
+            NSLog(@"%@ is not a legal move", move);
+
+        } else {
+            NSLog(@"performing move: %@", move);
+            selectedOrigin = NO;
+            [controller move:move];
+
+        }
+        
+    }
 }
 
 @end

@@ -96,6 +96,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return (float)me - you;
 }
 
+- (int)winner
+{
+    if ([[self movesAvailable] count])
+        [NSException raise:@"not an end state" format:@"still legal moves"];
+
+    float fitness = [self currentFitness];
+    if (fitness == 0.0)
+        return 0;
+
+    if (fitness < 0)
+        return player == White ? 2 : 1;
+        
+    [NSException raise:@"impossible" format:@"huh? what trickery is this?"];
+}
 - (NSArray *)movesAvailable
 {
     id moves = [NSMutableArray array];

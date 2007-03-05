@@ -41,7 +41,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 + (id)moveFromR:(int)r c:(int)c toR:(int)tr c:(int)tc
 {
-    return [[self alloc] initFromR:r c:c toR:tr c:tc];
+    return [[[self alloc] initFromR:r c:c toR:tr c:tc] autorelease];
 }
 
 
@@ -57,7 +57,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (BOOL)isEqual:(id)o
 {
-    return srcRow == [o srcRow] && srcCol == [o srcCol] && dstRow == [o dstRow] && dstCol == [o dstCol];
+    return srcRow == [o srcRow]
+        && srcCol == [o srcCol]
+        && dstRow == [o dstRow]
+        && dstCol == [o dstCol];
 }
 
 

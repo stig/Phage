@@ -21,16 +21,20 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class Phage;
+
 @interface BoardView : NSMatrix
 {
-    id controller;
+    Phage *controller;
     NSArray *disks;
     NSArray *state;
-    int rows, cols;
+    NSArray *legalMoves;
+    int rows, cols, srcRow, srcCol;
+    BOOL selectedOrigin;
 }
 
 - (void)setController:(id)ctrl;
 - (void)setTheme:(id)ctrl;
-- (void)setState:(id)this;
+- (void)setState:(NSArray *)state moves:(NSArray *)moves;
 
 @end
