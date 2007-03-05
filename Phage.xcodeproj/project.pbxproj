@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		532943FE0B99D06800496CB5 /* pieces.png in Resources */ = {isa = PBXBuildFile; fileRef = 532943FD0B99D06800496CB5 /* pieces.png */; };
 		532944A00B9C2BE100496CB5 /* SBAlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
+		532944C60B9C3F1100496CB5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 532944C50B9C3F1100496CB5 /* Credits.rtf */; };
 		53D26BA90B982571001F83A5 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26BAE0B982595001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
 		53D26BB10B9825A5001F83A5 /* PhageMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BB00B9825A5001F83A5 /* PhageMove.m */; };
@@ -57,6 +58,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Phage_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phage_Prefix.pch; sourceTree = "<group>"; };
 		532943FD0B99D06800496CB5 /* pieces.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pieces.png; sourceTree = "<group>"; };
+		532944C50B9C3F1100496CB5 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../Library/Frameworks/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
 		53D26BAC0B982595001F83A5 /* PhageState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhageState.h; sourceTree = "<group>"; };
 		53D26BAD0B982595001F83A5 /* PhageState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhageState.m; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				532944C50B9C3F1100496CB5 /* Credits.rtf */,
 				532943FD0B99D06800496CB5 /* pieces.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				53D26BBB0B982609001F83A5 /* Test-Info.plist */,
@@ -254,6 +257,7 @@
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				532943FE0B99D06800496CB5 /* pieces.png in Resources */,
+				532944C60B9C3F1100496CB5 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
