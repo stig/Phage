@@ -81,7 +81,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         
         [moves addObject:[PhageMove moveFromR:(int)r c:(int)c toR:(int)dr c:(int)dc]];
     }
-//    NSLog(@"(%d, %d) p: %d d: %d count: %u", r, c, p, dir, [moves count]);
     return moves;
 }
 
@@ -117,27 +116,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         for (int c = 0; c < 8; c++) {
             int p = board[r][c];
 
-            /* Skip this slot if it is empty, has been occupied before,
+            /* Skip this slot if it is empty,
+               has been occupied before,
                or is occupied by the wrong player */
             if ((p == Empty) || (p & Dirty) || !(p & player))
                 continue;
 
             for (int d = N; d < DIRECTIONS; d++) {
             
-                if (p & Circle) {
-                    /* all directions */
-                    
+                if (p & Triangle && !( d == E || d == W || ((p & Black) && d == S) || ((p & White) && d == N))) {
+                    continue;
+
                 } else if ((p & Square) && d != NE && d != SE && d != SW && d != NW ) {
                     continue;
                 
                 } else if ((p & Diamond) && d != N && d != E && d != S && d != W ) {
                     continue;
                 
-                } else if (p & Triangle) {
-                    if (!( d == E || d == W
-                            || ((p & Black) && d == S)
-                            || ((p & White) && d == N)))
-                        continue;
                 }
                 [moves addObjectsFromArray:[self moveR:r c:c direction:d]];
             }
