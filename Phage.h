@@ -25,7 +25,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @interface Phage : NSObject {
     SBAlphaBeta *ab;
+    NSArray *pieces;
     IBOutlet BoardView *board;
+    IBOutlet NSTableView *whiteMoves, *blackMoves;
 }
 
 - (IBAction)undo:(id)sender;
@@ -38,5 +40,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)updateViews;
 - (void)autoMove;
 - (void)resetGame;
+
+/* for NSTableView */
+- (int)numberOfRowsInTableView:(NSTableView *)this;
+- (id)tableView:(NSTableView *)this objectValueForTableColumn:(NSTableColumn *)column row:(int)row;
 
 @end

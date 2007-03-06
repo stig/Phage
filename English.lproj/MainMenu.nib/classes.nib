@@ -6,7 +6,7 @@
             ACTIONS = {undo = id; }; 
             CLASS = Phage; 
             LANGUAGE = ObjC; 
-            OUTLETS = {board = BoardView; }; 
+            OUTLETS = {blackMoves = NSTableView; board = BoardView; whiteMoves = NSTableView; }; 
             SUPERCLASS = NSObject; 
         }
     ); 

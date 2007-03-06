@@ -57,7 +57,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
-    [board setTheme:[self chopImage:[NSImage imageNamed:@"pieces"] rows:2 columns: 5]];
+    pieces = [[self chopImage:[NSImage imageNamed:@"pieces"] rows:2 columns: 5] retain];
+    [board setTheme:pieces];
+
+    [[blackMoves tableColumnWithIdentifier:@"piece"] setDataCell:[NSImageCell new]];
+    [[whiteMoves tableColumnWithIdentifier:@"piece"] setDataCell:[NSImageCell new]];
+
     [self resetGame];
 }
 
@@ -182,7 +187,32 @@ and updates views in between. */
 {
     [board setState:[[ab state] array] moves:[ab movesAvailable]];
     [board setNeedsDisplay:YES];
+    [blackMoves reloadData];
+    [whiteMoves reloadData];
     [[board window] display];
+}
+
+
+#pragma NSTableView
+
+- (int)numberOfRowsInTableView:(NSTableView *)this
+{
+    return 4;
+}
+
+- (id)tableView:(NSTableView *)this objectValueForTableColumn:(NSTableColumn *)column row:(int)row
+{
+    int offset = this == blackMoves ? 5 : 1;
+    id piece;
+    switch([this columnWithIdentifier:[column identifier]]) {
+        case 0:
+            piece = [pieces objectAtIndex:offset + row];
+            break;
+        case 1:
+            piece = [NSNumber numberWithInt: [[ab state] movesLeftForIndex:offset + row]];
+            break;
+    }
+    return piece;
 }
 
 

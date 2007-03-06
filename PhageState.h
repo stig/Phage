@@ -47,4 +47,6 @@ enum {
     int remainingMoves[Dirty];
 }
 
+- (int)movesLeftForIndex:(int)x;
+
 @end

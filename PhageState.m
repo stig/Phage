@@ -55,6 +55,34 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return self;
 }
 
+- (int)movesLeftForIndex:(int)x
+{
+    int piece;
+    /* 
+    map[ Black | Circle ] = 1;
+    map[ Black | Diamond ] = 2;
+    map[ Black | Square ] = 3;
+    map[ Black | Triangle ] = 4;
+    map[ White | Circle ] = 5;
+    map[ White | Diamond ] = 6;
+    map[ White | Square ] = 7;
+    map[ White | Triangle ] = 8;
+    */
+    switch (x) {
+        case 1: piece = Black | Circle;     break;
+        case 2: piece = Black | Diamond;    break;
+        case 3: piece = Black | Square;     break;
+        case 4: piece = Black | Triangle;   break;
+        case 5: piece = White | Circle;     break;
+        case 6: piece = White | Diamond;    break;
+        case 7: piece = White | Square;     break;
+        case 8: piece = White | Triangle;   break;
+        default: [NSException raise:@"unsupported input" format:@"unsupported input (%d)", x];
+    }
+    
+    return remainingMoves[piece];
+}
+
 - (NSArray *)moveFromRow:(int)r col:(int)c inDirection:(int)dir
 {
     int p = board[r][c];
@@ -108,7 +136,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         return player == White ? 2 : 1;
         
     [NSException raise:@"impossible" format:@"huh? what trickery is this?"];
+    return -1;
 }
+
 - (NSArray *)movesAvailable
 {
     id moves = [NSMutableArray array];
@@ -151,6 +181,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     board[r][c] = Dirty;
     board[ [move dstRow] ][ [move dstCol] ] = p;
 
+    remainingMoves[p]--;
+
     player = player == White ? Black : White;
     return self;
 }
@@ -163,6 +195,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     int p = board[r][c];
     board[r][c] = Empty;
     board[ [move srcRow] ][ [move srcCol] ] = p;
+
+    remainingMoves[p]++;
 
     player = player == White ? Black : White;
     return self;
