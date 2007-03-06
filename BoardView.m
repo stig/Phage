@@ -110,38 +110,33 @@
     NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
     int r, c;
     [self getRow:&r column:&c forPoint:p];
+    NSImageCell *ic = [self cellAtRow:r column:c];
     
     if (!selectedOrigin) {
         for (int i = 0; i < [legalMoves count]; i++) {
             id o = [legalMoves objectAtIndex:i];
             if ([o srcRow] == r && [o srcCol] == c) {
-                NSLog(@"setting origin");
+                [ic setImageFrameStyle:NSImageFrameGroove];
+                [self drawCell:ic];
                 selectedOrigin = YES;
                 srcRow = r;
                 srcCol = c;
                 break;
             }
         }
-        if (!selectedOrigin)
-            NSLog(@"Illegal move");
-
         
     } else if (r == srcRow && c == srcCol) {
-        NSLog(@"unsetting origin");
+        [ic setImageFrameStyle:NSImageFrameNone];
+        [self drawCell:ic];
         selectedOrigin = NO;
         
     } else {
         id move = [PhageMove moveFromR:srcRow c:srcCol toR:r c:c];
-        if ([legalMoves indexOfObject:move] == NSNotFound) {
-            NSLog(@"%@ is not a legal move", move);
-
-        } else {
-            NSLog(@"performing move: %@", move);
+        if ([legalMoves indexOfObject:move] != NSNotFound) {
             selectedOrigin = NO;
             [controller move:move];
 
         }
-        
     }
 }
 
