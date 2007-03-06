@@ -3,6 +3,7 @@
         {CLASS = BoardView; LANGUAGE = ObjC; SUPERCLASS = NSMatrix; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
+            ACTIONS = {undo = id; }; 
             CLASS = Phage; 
             LANGUAGE = ObjC; 
             OUTLETS = {board = BoardView; }; 
