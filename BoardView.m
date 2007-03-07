@@ -51,14 +51,14 @@
     /* ick! */
     int map[Dirty+1] = { 0, };
     map[ Empty ] = 0;
-    map[ Black | Circle ] = 1;
-    map[ Black | Diamond ] = 2;
-    map[ Black | Square ] = 3;
-    map[ Black | Triangle ] = 4;
-    map[ White | Circle ] = 5;
-    map[ White | Diamond ] = 6;
-    map[ White | Square ] = 7;
-    map[ White | Triangle ] = 8;
+    map[ Black | Diamond ]  = 1;
+    map[ Black | Triangle ] = 2;
+    map[ Black | Square ]   = 3;
+    map[ Black | Circle ]   = 4;
+    map[ White | Circle ]   = 5;
+    map[ White | Square ]   = 6;
+    map[ White | Triangle ] = 7;
+    map[ White | Diamond ]  = 8;
     map[ Dirty ] = 9;
 
     for (int r = 0; r < rows; r++) {

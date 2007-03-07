@@ -31,8 +31,8 @@ enum {
     Empty = 0,
 
     Circle = 1,
-    Square = 2,
-    Diamond = 4,
+    Diamond = 2,
+    Square = 4,
     Triangle = 8,
 
     Black = 16,

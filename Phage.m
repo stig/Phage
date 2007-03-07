@@ -193,7 +193,7 @@ and updates views in between. */
 }
 
 
-#pragma NSTableView
+#pragma mark NSTableView
 
 - (int)numberOfRowsInTableView:(NSTableView *)this
 {
@@ -202,15 +202,17 @@ and updates views in between. */
 
 - (id)tableView:(NSTableView *)this objectValueForTableColumn:(NSTableColumn *)column row:(int)row
 {
-    int offset = this == blackMoves ? 5 : 1;
+    int offset = this == whiteMoves ? 5 : 1;
     id piece;
-    switch([this columnWithIdentifier:[column identifier]]) {
+    switch ([this columnWithIdentifier:[column identifier]]) {
         case 0:
             piece = [pieces objectAtIndex:offset + row];
             break;
         case 1:
             piece = [NSNumber numberWithInt: [[ab state] movesLeftForIndex:offset + row]];
             break;
+        default:
+            [NSException raise:@"impossible" format:@"I was passed a column I don't know about"];
     }
     return piece;
 }
