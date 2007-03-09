@@ -31,10 +31,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 }
 
 - (IBAction)undo:(id)sender;
+- (IBAction)newGame:(id)sender;
 
 - (id)state;
 - (void)move:(id)move;
 - (void)gameOverAlert;
+- (void)newGameAlert;
 - (void)aiMove;
 
 - (void)updateViews;

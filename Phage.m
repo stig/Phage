@@ -108,7 +108,6 @@ and updates views in between. */
 	}
 }
 
-/** Initiate a new game. */
 - (IBAction)newGame:(id)sender
 {
     if ([ab countMoves]) {
