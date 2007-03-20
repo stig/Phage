@@ -130,7 +130,7 @@
         selectedOrigin = NO;
         
     } else {
-        id move = [PhageMove moveFromR:srcRow c:srcCol toR:r c:c];
+        id move = [PhageState moveFromR:srcRow c:srcCol toR:r c:c];
         if ([legalMoves indexOfObject:move] != NSNotFound) {
             selectedOrigin = NO;
             [controller move:move];
