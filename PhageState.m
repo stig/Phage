@@ -20,7 +20,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import "PhageState.h"
-#import "PhageMove.h"
 
 @implementation PhageState
 
@@ -70,15 +69,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     map[ White | Triangle ] = 8;
     */
     switch (x) {
-        case 1: piece = Black | Diamond;     break;
-        case 2: piece = Black | Triangle;    break;
+        case 1: piece = Black | Diamond;    break;
+        case 2: piece = Black | Triangle;   break;
         case 3: piece = Black | Square;     break;
-        case 4: piece = Black | Circle;   break;
+        case 4: piece = Black | Circle;     break;
         case 5: piece = White | Circle;     break;
-        case 6: piece = White | Square;    break;
-        case 7: piece = White | Triangle;     break;
-        case 8: piece = White | Diamond;   break;
-        default: [NSException raise:@"unsupported input" format:@"unsupported input (%d)", x];
+        case 6: piece = White | Square;     break;
+        case 7: piece = White | Triangle;   break;
+        case 8: piece = White | Diamond;    break;
+        default:
+            [NSException raise:@"unsupported input"
+                        format:@"unsupported input (%d)", x];
     }
     
     return remainingMoves[piece];
@@ -108,7 +109,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         if (dr > 7 || dr < 0 || dc > 7 || dc < 0 || board[dr][dc] != Empty)
             break;
         
-        [moves addObject:[PhageMove moveFromR:(int)r c:(int)c toR:(int)dr c:(int)dc]];
+        [moves addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithInt:r], @"srcRow",
+            [NSNumber numberWithInt:c], @"srcCol",
+            [NSNumber numberWithInt:dr], @"dstRow",
+            [NSNumber numberWithInt:dc], @"dstCol",
+            nil]];
     }
     return moves;
 }
@@ -175,12 +181,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)transformWithMove:(id)move
 {
-    unsigned r = [move srcRow];
-    unsigned c = [move srcCol];
+    int r = [[move valueForKey:@"srcRow"] intValue];
+    int c = [[move valueForKey:@"srcCol"] intValue];
+    int tr = [[move valueForKey:@"dstRow"] intValue];
+    int tc = [[move valueForKey:@"dstCol"] intValue];
 
     int p = board[r][c];
     board[r][c] = Dirty;
-    board[ [move dstRow] ][ [move dstCol] ] = p;
+    board[tr][tc] = p;
 
     remainingMoves[p]--;
 
@@ -189,12 +197,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)undoTransformWithMove:(id)move
 {
-    unsigned r = [move dstRow];
-    unsigned c = [move dstCol];
+    int r = [[move valueForKey:@"srcRow"] intValue];
+    int c = [[move valueForKey:@"srcCol"] intValue];
+    int tr = [[move valueForKey:@"dstRow"] intValue];
+    int tc = [[move valueForKey:@"dstCol"] intValue];
 
-    int p = board[r][c];
-    board[r][c] = Empty;
-    board[ [move srcRow] ][ [move srcCol] ] = p;
+    int p = board[tr][tc];
+    board[tr][tc] = Empty;
+    board[r][c] = p;
 
     remainingMoves[p]++;
 

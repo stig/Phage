@@ -9,7 +9,6 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #import <PhageState.h>
-#import <PhageMove.h>
 
 @interface PhageUnit : SenTestCase {
 
