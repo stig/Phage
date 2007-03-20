@@ -16,7 +16,7 @@
 {
     id state = [PhageState new];
     STAssertEquals([state player], (int)1, nil);
-    STAssertEqualsWithAccuracy([state currentFitness], (float)0.0, 0.0, nil);
+    STAssertEqualsWithAccuracy([state currentFitness], (double)0.0, 0.0, nil);
 
     id moves = [state movesAvailable];
     STAssertEquals([moves count], (unsigned)61, @"expected number of moves");
@@ -28,9 +28,9 @@
     STAssertEquals([move dstRow], (unsigned)3, nil);
     STAssertEquals([move dstCol], (unsigned)6, nil);
 
-    STAssertNotNil([state applyMove:move], @"applying move gives us state back");
+    [state transformWithMove:move];
     STAssertEquals([state player], (int)2, nil);
-    STAssertEqualsWithAccuracy([state currentFitness], (float)9.0, 0.00001, nil);
+    STAssertEqualsWithAccuracy([state currentFitness], (double)9.0, 0.00001, nil);
 
     /* dirty, dirty test (make go away) */
     STAssertEquals(((PhageState*)state)->board[4][6], (int)Dirty, nil);
@@ -39,7 +39,7 @@
     moves = [state movesAvailable];
     STAssertEquals([moves count], (unsigned)59, @"expected number of moves for black");
 
-    STAssertNotNil([state undoMove:move], @"undoing move gives us state back");
+    [state undoTransformWithMove:move];
     STAssertEquals([state player], (int)1, nil);
 
     /* dirty, dirty test (make go away) */

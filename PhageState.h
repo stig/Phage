@@ -19,10 +19,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import <Cocoa/Cocoa.h>
-
-#import <SBAlphaBeta/SBAlphaBeta.h>
-#import "PhageMove.h"
+#import <SBAlphaBeta/SBAlphaBetaState.h>
 
 /* directions to move in */
 enum { N = 0, NE, E, SE, S, SW, W, NW, DIRECTIONS };
@@ -40,13 +37,15 @@ enum {
     Dirty = 64,
 };
 
-@interface PhageState : NSObject <SBGameState> {
+@interface PhageState : NSObject <SBMutableAlphaBetaState> {
 @public
     int player;
     int board[8][8];
     int remainingMoves[Dirty];
 }
 
+- (int)winner;
+- (int)player;
 - (int)movesLeftForIndex:(int)x;
 
 @end

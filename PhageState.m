@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 #import "PhageState.h"
+#import "PhageMove.h"
 
 @implementation PhageState
 
@@ -69,14 +70,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     map[ White | Triangle ] = 8;
     */
     switch (x) {
-        case 1: piece = Black | Circle;     break;
-        case 2: piece = Black | Diamond;    break;
+        case 1: piece = Black | Diamond;     break;
+        case 2: piece = Black | Triangle;    break;
         case 3: piece = Black | Square;     break;
-        case 4: piece = Black | Triangle;   break;
+        case 4: piece = Black | Circle;   break;
         case 5: piece = White | Circle;     break;
-        case 6: piece = White | Diamond;    break;
-        case 7: piece = White | Square;     break;
-        case 8: piece = White | Triangle;   break;
+        case 6: piece = White | Square;    break;
+        case 7: piece = White | Triangle;     break;
+        case 8: piece = White | Diamond;   break;
         default: [NSException raise:@"unsupported input" format:@"unsupported input (%d)", x];
     }
     
@@ -112,7 +113,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return moves;
 }
 
-- (float)currentFitness
+- (double)currentFitness
 {
     unsigned me = [[self movesAvailable] count];
 
@@ -172,7 +173,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return moves;
 }
 
-- (id)applyMove:(id)move
+- (void)transformWithMove:(id)move
 {
     unsigned r = [move srcRow];
     unsigned c = [move srcCol];
@@ -184,10 +185,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     remainingMoves[p]--;
 
     player = player == White ? Black : White;
-    return self;
 }
 
-- (id)undoMove:(id)move
+- (void)undoTransformWithMove:(id)move
 {
     unsigned r = [move dstRow];
     unsigned c = [move dstCol];
@@ -199,7 +199,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     remainingMoves[p]++;
 
     player = player == White ? Black : White;
-    return self;
 }
 
 - (int)player

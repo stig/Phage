@@ -71,7 +71,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 
-    int winner = [ab winner];
+    int winner = [[self state] winner];
     NSString *msg = winner == 2  ? @"You lost!" :
                     !winner      ? @"You managed a draw!" :
                                    @"You won!";
@@ -89,9 +89,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 and updates views in between. */
 - (IBAction)undo:(id)sender
 {
-    [ab undo];
+    [ab undoLastMove];
     [self updateViews];
-    [ab undo];
+    [ab undoLastMove];
     [self autoMove];
 }
 
@@ -121,7 +121,7 @@ and updates views in between. */
 /** Make the AI perform a move. */
 - (void)aiMove
 {
-    if ([ab iterativeSearch]) {
+    if ([ab applyMoveFromSearchWithInterval:0.3]) {
         [self autoMove];
     }
     else {
@@ -133,11 +133,11 @@ and updates views in between. */
 - (void)move:(id)m
 {
     @try {
-        id moves = [[ab state] movesAvailable];
+        id moves = [ab movesAvailable];
         if ([moves indexOfObject:m] == NSNotFound)
             [NSException raise:@"illegal move" format:@"illegal move"];
         
-        [ab move:m];
+        [ab applyMove:m];
     }
     @catch (id any) {
         NSLog(@"Illegal move attempted: %@", m);
@@ -150,7 +150,7 @@ and updates views in between. */
 /** Return the current state (pass-through to SBAlphaBeta). */
 - (id)state
 {
-    return [ab state];
+    return [ab currentState];
 }
 
 - (void)dealloc
@@ -184,7 +184,7 @@ and updates views in between. */
 
 - (void)updateViews
 {
-    [board setState:[[ab state] array] moves:[ab movesAvailable]];
+    [board setState:[[self state] array] moves:[ab movesAvailable]];
     [board setNeedsDisplay:YES];
     [blackMoves reloadData];
     [whiteMoves reloadData];
@@ -208,7 +208,7 @@ and updates views in between. */
             piece = [pieces objectAtIndex:offset + row];
             break;
         case 1:
-            piece = [NSNumber numberWithInt: [[ab state] movesLeftForIndex:offset + row]];
+            piece = [NSNumber numberWithInt: [[self state] movesLeftForIndex: offset + row]];
             break;
         default:
             [NSException raise:@"impossible" format:@"I was passed a column I don't know about"];
