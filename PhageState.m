@@ -85,7 +85,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return remainingMoves[piece];
 }
 
-- (id)moveFromR:(int)sr c:(int)sc toR:(int)r c:(int)c;
++ (id)moveFromR:(int)sr c:(int)sc toR:(int)r c:(int)c
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
         [NSNumber numberWithInt:sr], @"srcRow",
@@ -119,7 +119,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         if (dr > 7 || dr < 0 || dc > 7 || dc < 0 || board[dr][dc] != Empty)
             break;
         
-        [moves addObject:[self moveFromR:r c:c toR:dr c:dc]];
+        [moves addObject:[PhageState moveFromR:r c:c toR:dr c:dc]];
     }
     return moves;
 }

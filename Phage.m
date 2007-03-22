@@ -135,7 +135,8 @@ and updates views in between. */
     @try {
         id moves = [ab movesAvailable];
         if ([moves indexOfObject:m] == NSNotFound)
-            [NSException raise:@"illegal move" format:@"illegal move"];
+            [NSException raise:@"illegal move" 
+                        format:@"illegal move"];
         
         [ab applyMove:m];
     }
@@ -211,7 +212,8 @@ and updates views in between. */
             piece = [NSNumber numberWithInt: [[self state] movesLeftForIndex: offset + row]];
             break;
         default:
-            [NSException raise:@"impossible" format:@"I was passed a column I don't know about"];
+            [NSException raise:@"impossible"
+                        format:@"I was passed a column I don't know about"];
     }
     return piece;
 }

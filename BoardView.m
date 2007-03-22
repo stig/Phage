@@ -114,7 +114,8 @@
     if (!selectedOrigin) {
         for (int i = 0; i < [legalMoves count]; i++) {
             id o = [legalMoves objectAtIndex:i];
-            if ([o srcRow] == r && [o srcCol] == c) {
+            if ([[o valueForKey:@"srcRow"] intValue] == r
+                    && [[o valueForKey:@"srcCol"] intValue] == c) {
                 [ic setImageFrameStyle:NSImageFrameGroove];
                 [self drawCell:ic];
                 selectedOrigin = YES;

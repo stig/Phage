@@ -17,7 +17,7 @@
 		53D26C3D0B982D2D001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
 		53D26CE90B987589001F83A5 /* Phage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26CE80B987589001F83A5 /* Phage.m */; };
 		53D26CF20B9875B2001F83A5 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26CF00B9875B2001F83A5 /* BoardView.m */; };
-		53D99A860B9D7A2400868117 /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 53D99A820B9D7A2400868117 /* Help */; };
+		53FCFC910BB0A44D00A9E983 /* Help in Resources */ = {isa = PBXBuildFile; fileRef = 53FCFC860BB0A44D00A9E983 /* Help */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -59,7 +59,7 @@
 		53D26CE80B987589001F83A5 /* Phage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phage.m; sourceTree = "<group>"; };
 		53D26CF00B9875B2001F83A5 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		53D26CF10B9875B2001F83A5 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
-		53D99A830B9D7A2400868117 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/Help; sourceTree = "<group>"; };
+		53FCFC870BB0A44D00A9E983 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/Help; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Phage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -152,7 +152,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				53D99A820B9D7A2400868117 /* Help */,
+				53FCFC860BB0A44D00A9E983 /* Help */,
 				532944C50B9C3F1100496CB5 /* Credits.rtf */,
 				532943FD0B99D06800496CB5 /* pieces.png */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -244,7 +244,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				532943FE0B99D06800496CB5 /* pieces.png in Resources */,
 				532944C60B9C3F1100496CB5 /* Credits.rtf in Resources */,
-				53D99A860B9D7A2400868117 /* Help in Resources */,
+				53FCFC910BB0A44D00A9E983 /* Help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,10 +306,10 @@
 			name = MainMenu.nib;
 			sourceTree = "<group>";
 		};
-		53D99A820B9D7A2400868117 /* Help */ = {
+		53FCFC860BB0A44D00A9E983 /* Help */ = {
 			isa = PBXVariantGroup;
 			children = (
-				53D99A830B9D7A2400868117 /* English */,
+				53FCFC870BB0A44D00A9E983 /* English */,
 			);
 			name = Help;
 			sourceTree = "<group>";

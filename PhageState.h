@@ -47,6 +47,6 @@ enum {
 - (int)winner;
 - (int)player;
 - (int)movesLeftForIndex:(int)x;
-- (id)moveFromR:(int)sr c:(int)sc toR:(int)r c:(int)c;
++ (id)moveFromR:(int)sr c:(int)sc toR:(int)r c:(int)c;
 
 @end
