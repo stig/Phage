@@ -9,7 +9,7 @@ UP=brautaset.org:code/$(NAME)/download/$(DMG)
 
 site: Site/index.html
 	rm -rf _site; cp -r Site _site
-	perl -pi -e 's/\@VERSION\@/$(VERSION)/' _site/*.html
+	perl -pi -e 's/\@VERSION\@/$(VERSION)/g' _site/*.html
 
 upload-site: site
 	rsync -ruv --delete --exclude download* _site/ brautaset.org:code/$(NAME)/
