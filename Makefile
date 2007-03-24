@@ -14,9 +14,11 @@ site: Site/index.html
 upload-site: site
 	rsync -ruv --delete --exclude download* _site/ brautaset.org:code/$(NAME)/
 
-dmg:
+install: *.m
+	xcodebuild -target $(NAME) install
+
+dmg: install
 	rm -rf $(DMG)
-	xcodebuild -target Phage install
 	hdiutil create -fs HFS+ -volname $(RELEASENAME) -srcfolder $(INSTALLPATH) $(DMG)
 
 upload-dmg: dmg

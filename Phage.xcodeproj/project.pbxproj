@@ -10,6 +10,7 @@
 		532943FE0B99D06800496CB5 /* pieces.png in Resources */ = {isa = PBXBuildFile; fileRef = 532943FD0B99D06800496CB5 /* pieces.png */; };
 		532944A00B9C2BE100496CB5 /* SBAlphaBeta.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		532944C60B9C3F1100496CB5 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 532944C50B9C3F1100496CB5 /* Credits.rtf */; };
+		539B42AB0BB569FB0027A6F0 /* phage.icns in Resources */ = {isa = PBXBuildFile; fileRef = 539B42AA0BB569FB0027A6F0 /* phage.icns */; };
 		53D26BA90B982571001F83A5 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26BAE0B982595001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
 		53D26C300B982CE2001F83A5 /* PhageUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BB30B9825C5001F83A5 /* PhageUnit.m */; };
@@ -48,6 +49,7 @@
 		32CA4F630368D1EE00C91783 /* Phage_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phage_Prefix.pch; sourceTree = "<group>"; };
 		532943FD0B99D06800496CB5 /* pieces.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pieces.png; sourceTree = "<group>"; };
 		532944C50B9C3F1100496CB5 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		539B42AA0BB569FB0027A6F0 /* phage.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = phage.icns; sourceTree = "<group>"; };
 		53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../Library/Frameworks/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
 		53D26BAC0B982595001F83A5 /* PhageState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhageState.h; sourceTree = "<group>"; };
 		53D26BAD0B982595001F83A5 /* PhageState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhageState.m; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				539B42AA0BB569FB0027A6F0 /* phage.icns */,
 				53FCFC860BB0A44D00A9E983 /* Help */,
 				532944C50B9C3F1100496CB5 /* Credits.rtf */,
 				532943FD0B99D06800496CB5 /* pieces.png */,
@@ -245,6 +248,7 @@
 				532943FE0B99D06800496CB5 /* pieces.png in Resources */,
 				532944C60B9C3F1100496CB5 /* Credits.rtf in Resources */,
 				53FCFC910BB0A44D00A9E983 /* Help in Resources */,
+				539B42AB0BB569FB0027A6F0 /* phage.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
