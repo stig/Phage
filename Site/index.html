@@ -1,14 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
 <html>
     <head>
-        <title>Phage - an abstract strategy game for 2 players</title>
+        <title>Phage - an abstract strategy game for OS X</title>
         <style type="text/css">
         body {  width: 35em;
-                margin-top: 2em;
-                margin-bottom: 2em;
+                margin: 2em;
                 margin-left: auto;
                 margin-right: auto;
                 font-family: Verdana, Arial, sans-serif;
-                line-height: 1.3em; }
+        }
         img {   float: left;
                 margin-right: 1.5em;
                 margin-bottom: 1.5em;
@@ -17,23 +18,34 @@
         h1, h2 { clear: both; color: #666666; }
         h1 { text-align: center; }
         a:hover { background:#888; }
+        .blurb { font-weight: bold; }
         </style>
     </head>
     
     <body>
         <h1>Phage</h1>
 
-        <img src="images/phage.png" />
-
-        <p>Phage is a two-player abstract strategy game for Mac OS X. Pit your mind against the machine: can you beat it? The best way to find out is to download the <a href="download/Phage-@VERSION@.dmg">Phage v@VERSION@</a> disk image and start playing! </p>
+        <div class="blurb">
+        <img src="images/phage.png" title="A game state in Phage" />
         
+        <p>A game of conquest between you and the computer.</p>
+        
+        <p>Conquer land to win&mdash;try not to get trapped between minefields in the process. </p>
+        
+        <p>Download <a href="download/Phage-@VERSION@.dmg">Phage v@VERSION@</a> for OS&nbsp;X and start playing!</p>
+        
+        <p>Phage is waiting for you... </p>
+        </div>
         <h2>Get in touch!</h2>
         
-        <p>Mail me at <a href="mailto:stig@brautaset.org">stig@brautaset.org</a> if you find a bug, have an idea for improvement, or simply love playing the game. See also <a href="http://brautaset.org/about/">my contact page</a> for other ways to get in touch with me.</p>
+        <p>I can be reached at <a href="mailto:stig@brautaset.org">stig@brautaset.org</a>, and I'd love to hear from you. See <a href="http://brautaset.org/about/">my contact page</a> for other ways to get in touch with me.</p>
 
         <h2>Copyright, license and all that Jazz</h2>
         
-        <p>Phage is free software, released under the GPL. You can get the source from <a href="http://svn.brautaset.org/Phage/">Subversion</a>. If you want to hack on it you first need to install <a href="http://code.brautaset.org/SBAlphaBeta/">SBAlphaBeta</a>, my game-tree search framework.</p>
+        <p>Phage is Copyright &copy; 2003 Steve Gardner. <br/>
+        This Cocoa version is Copyright &copy; 2007 Stig Brautaset. </p>
+        
+        <p>You can get the source (released under the GPL) from my <a href="http://svn.brautaset.org/Phage/">Subversion</a> repository. If you want to hack on it you first need to install <a href="http://code.brautaset.org/SBAlphaBeta/">SBAlphaBeta</a>.</p>
         
     </body>
 </html>
