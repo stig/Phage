@@ -15,6 +15,7 @@ upload-site: site
 	rsync -ruv --delete --exclude download* _site/ brautaset.org:code/$(NAME)/
 
 install: *.m
+	setCFBundleVersion.pl $(VERSION)
 	xcodebuild -target $(NAME) install
 
 dmg: install
