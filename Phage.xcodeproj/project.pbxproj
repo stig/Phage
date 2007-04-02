@@ -14,7 +14,6 @@
 		53D26BA90B982571001F83A5 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26BAE0B982595001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
 		53D26C300B982CE2001F83A5 /* PhageUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BB30B9825C5001F83A5 /* PhageUnit.m */; };
-		53D26C320B982CF0001F83A5 /* SBAlphaBeta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */; };
 		53D26C3D0B982D2D001F83A5 /* PhageState.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26BAD0B982595001F83A5 /* PhageState.m */; };
 		53D26CE90B987589001F83A5 /* Phage.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26CE80B987589001F83A5 /* Phage.m */; };
 		53D26CF20B9875B2001F83A5 /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D26CF00B9875B2001F83A5 /* BoardView.m */; };
@@ -24,6 +23,44 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		53E862C80BC17CC800580DBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = SBAlphaBeta;
+		};
+		53E862CA0BC17CC800580DBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535024600B3AC2D90012DAE7;
+			remoteInfo = SBReversi;
+		};
+		53E862CC0BC17CC800580DBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535023DF0B3AB87F0012DAE7;
+			remoteInfo = TTT;
+		};
+		53E862CE0BC17CC800580DBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 535023F40B3AB9000012DAE7;
+			remoteInfo = Tests;
+		};
+		53E8632A0BC17F8F00580DBC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SBAlphaBeta */;
+			remoteInfo = SBAlphaBeta;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5329449A0B9C2BBF00496CB5 /* CopyFiles */ = {
@@ -50,7 +87,7 @@
 		532943FD0B99D06800496CB5 /* pieces.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pieces.png; sourceTree = "<group>"; };
 		532944C50B9C3F1100496CB5 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		539B42AA0BB569FB0027A6F0 /* phage.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = phage.icns; sourceTree = "<group>"; };
-		53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../Library/Frameworks/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
+		53D26BA80B982571001F83A5 /* SBAlphaBeta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAlphaBeta.framework; path = ../SBAlphaBeta/build/Release/SBAlphaBeta.framework; sourceTree = SOURCE_ROOT; };
 		53D26BAC0B982595001F83A5 /* PhageState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhageState.h; sourceTree = "<group>"; };
 		53D26BAD0B982595001F83A5 /* PhageState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhageState.m; sourceTree = "<group>"; };
 		53D26BB20B9825C5001F83A5 /* PhageUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhageUnit.h; sourceTree = "<group>"; };
@@ -61,6 +98,7 @@
 		53D26CE80B987589001F83A5 /* Phage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Phage.m; sourceTree = "<group>"; };
 		53D26CF00B9875B2001F83A5 /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		53D26CF10B9875B2001F83A5 /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBAlphaBeta.xcodeproj; path = ../SBAlphaBeta/SBAlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
 		53FCFC870BB0A44D00A9E983 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/Help; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Phage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53D26C320B982CF0001F83A5 /* SBAlphaBeta.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +168,7 @@
 		29B97314FDCFA39411CA2CEA /* Phage */ = {
 			isa = PBXGroup;
 			children = (
+				53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -175,6 +213,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		53E862BF0BC17CC800580DBC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				53E862C90BC17CC800580DBC /* SBAlphaBeta.framework */,
+				53E862CB0BC17CC800580DBC /* SBReversi.framework */,
+				53E862CD0BC17CC800580DBC /* TTT.framework */,
+				53E862CF0BC17CC800580DBC /* Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,6 +257,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				53E8632B0BC17F8F00580DBC /* PBXTargetDependency */,
 			);
 			name = Phage;
 			productInstallPath = "$(HOME)/Applications";
@@ -224,12 +274,49 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Phage */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 53E862BF0BC17CC800580DBC /* Products */;
+					ProjectRef = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
+				},
+			);
 			targets = (
 				8D1107260486CEB800E47090 /* Phage */,
 				53D26C2C0B982CC7001F83A5 /* Test */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		53E862C90BC17CC800580DBC /* SBAlphaBeta.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SBAlphaBeta.framework;
+			remoteRef = 53E862C80BC17CC800580DBC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53E862CB0BC17CC800580DBC /* SBReversi.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SBReversi.framework;
+			remoteRef = 53E862CA0BC17CC800580DBC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53E862CD0BC17CC800580DBC /* TTT.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TTT.framework;
+			remoteRef = 53E862CC0BC17CC800580DBC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		53E862CF0BC17CC800580DBC /* Tests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.octest;
+			remoteRef = 53E862CE0BC17CC800580DBC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		53D26C280B982CC7001F83A5 /* Resources */ = {
@@ -293,6 +380,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		53E8632B0BC17F8F00580DBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SBAlphaBeta;
+			targetProxy = 53E8632A0BC17F8F00580DBC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -329,7 +424,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../SBAlphaBeta/build/Release\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -361,7 +456,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../SBAlphaBeta/build/Release\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -391,7 +486,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../SBAlphaBeta/build/Release\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -415,7 +510,7 @@
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../SBAlphaBeta/build/Release\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INFOPLIST_FILE = Info.plist;
