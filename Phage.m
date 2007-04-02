@@ -71,7 +71,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 
-    int winner = [[self state] winner];
+    int winner = [ab winner];
     NSString *msg = winner == 2  ? @"You lost!" :
                     !winner      ? @"You managed a draw!" :
                                    @"You won!";
@@ -168,7 +168,7 @@ and updates views in between. */
     if ([ab isGameOver]) {
         [self gameOverAlert];
     }
-    if (2 == [[self state] player]) {
+    if (2 == [ab playerTurn]) {
         [self aiMove];
         [self updateViews];
     }

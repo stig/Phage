@@ -132,20 +132,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     unsigned you = [[self movesAvailable] count];
 
     player = player == White ? Black : White;
-    return (float)me - you;
+    return (double)me - you;
 }
 
-- (int)winner
+- (double)endStateScore
 {
     if ([[self movesAvailable] count])
         [NSException raise:@"not an end state" format:@"still legal moves"];
 
-    float fitness = [self currentFitness];
+    double fitness = [self currentFitness];
     if (fitness == 0.0)
-        return 0;
+        return 0.0;
 
-    if (fitness < 0)
-        return player == White ? 2 : 1;
+    if (fitness < 0.0)
+        return player == White ? fitness : -fitness;
         
     [NSException raise:@"impossible" format:@"huh? what trickery is this?"];
     return -1;
