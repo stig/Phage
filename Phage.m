@@ -150,10 +150,7 @@ and updates views in between.
 
 - (IBAction)showMoveHint:(id)sender
 {
-    [progressIndicator startAnimation:self];
-    id move = [ab moveFromSearchWithInterval:INTERVAL];
-    [progressIndicator stopAnimation:self];
-    [board setHint:move];
+    [board setHint:[self findMove]];
 }
 
 - (IBAction)toggleAutomatic:(id)sender
@@ -170,6 +167,15 @@ and updates views in between.
 
 
 #pragma mark Actions
+
+/** AI move */
+- (id)findMove
+{
+    [progressIndicator startAnimation:self];
+    id move = [ab moveFromSearchWithInterval:INTERVAL];
+    [progressIndicator stopAnimation:self];    
+    return move;
+}
 
 /** Perform the given move. */
 - (void)move:(id)m
@@ -205,9 +211,10 @@ and updates views in between.
         automatic = NO;
         [self gameOverAlert];
     }
+
     if (automatic || ai == [ab playerTurn]) {
-        [progressIndicator startAnimation:self];
-        if ([ab applyMoveFromSearchWithInterval:INTERVAL]) {
+        id move = [self findMove];
+        if ([ab applyMove:move]) {
             [self autoMove];
         }
         else {
