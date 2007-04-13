@@ -3,7 +3,13 @@
         {CLASS = BoardView; LANGUAGE = ObjC; SUPERCLASS = NSMatrix; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
-            ACTIONS = {hint = id; newGame = id; toggleAutomatic = id; undo = id; }; 
+            ACTIONS = {
+                newGame = id; 
+                showMoveHint = id; 
+                toggleAutomatic = id; 
+                toggleHighlightMoves = id; 
+                undo = id; 
+            }; 
             CLASS = Phage; 
             LANGUAGE = ObjC; 
             OUTLETS = {

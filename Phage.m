@@ -148,7 +148,7 @@ and updates views in between.
     }
 }
 
-- (IBAction)hint:(id)sender
+- (IBAction)showMoveHint:(id)sender
 {
     [progressIndicator startAnimation:self];
     id move = [ab moveFromSearchWithInterval:INTERVAL];
@@ -159,9 +159,15 @@ and updates views in between.
 - (IBAction)toggleAutomatic:(id)sender
 {
     automatic = automatic ? NO : YES;
-    NSLog(@"set automatic state: %u", automatic);
     [self autoMove];
 }
+
+- (IBAction)toggleHighlightMoves:(id)sender
+{
+    highlightMoves = highlightMoves ? NO : YES;
+    [board setHighlightMoves:highlightMoves];
+}
+
 
 #pragma mark Actions
 

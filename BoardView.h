@@ -32,11 +32,13 @@
     NSArray *legalMoves;
     int rows, cols, srcRow, srcCol;
     BOOL selectedOrigin;
+    BOOL highlightMoves;
 }
 
+- (void)setHighlightMoves:(BOOL)x;
 - (void)setHint:(id)hint;
-- (void)setController:(id)ctrl;
-- (void)setTheme:(id)ctrl;
+- (void)setController:(id)x;
+- (void)setTheme:(id)x;
 - (void)setState:(NSArray *)state moves:(NSArray *)moves;
 
 @end

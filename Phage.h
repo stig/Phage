@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @interface Phage : NSObject {
     unsigned ai;
-    BOOL automatic;
+    BOOL automatic, highlightMoves;
     SBAlphaBeta *ab;
     NSArray *pieces;
     IBOutlet BoardView *board;
@@ -33,8 +33,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     IBOutlet NSProgressIndicator *progressIndicator;
 }
 
+- (IBAction)toggleHighlightMoves:(id)sender;
 - (IBAction)toggleAutomatic:(id)sender;
-- (IBAction)hint:(id)sender;
+- (IBAction)showMoveHint:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 

@@ -66,6 +66,11 @@
     }
 }
 
+- (void)setHighlightMoves:(BOOL)x
+{
+    highlightMoves = x;
+    NSLog(@"highlighting moves: %@", x ? @"Yes" : @"No");
+}
 
 - (void)setState:(NSArray *)this moves:(NSArray *)moves
 {
@@ -152,6 +157,7 @@
     
     [self setNeedsDisplay:YES];
 }
+
 
 - (void)mouseDown:(NSEvent *)event
 {
