@@ -64,7 +64,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* SBAlphaBeta */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = SBAlphaBeta;
 		};
 /* End PBXContainerItemProxy section */
@@ -106,7 +106,7 @@
 		53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBAlphaBeta.xcodeproj; path = ../SBAlphaBeta/SBAlphaBeta.xcodeproj; sourceTree = SOURCE_ROOT; };
 		53FCFC870BB0A44D00A9E983 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/Help; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Phage.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Phage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

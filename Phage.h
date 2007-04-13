@@ -24,12 +24,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import "BoardView.h"
 
 @interface Phage : NSObject {
+    unsigned ai;
     SBAlphaBeta *ab;
     NSArray *pieces;
     IBOutlet BoardView *board;
     IBOutlet NSTableView *whiteMoves, *blackMoves;
 }
 
+- (IBAction)hint:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
 
@@ -37,7 +39,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)move:(id)move;
 - (void)gameOverAlert;
 - (void)newGameAlert;
-- (void)aiMove;
 
 - (void)updateViews;
 - (void)autoMove;

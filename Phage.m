@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import "Phage.h"
 #import "PhageState.h"
 
+
+#define INTERVAL 0.3
+
 @implementation Phage
 
 
@@ -55,6 +58,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)awakeFromNib
 {
+    ai = 2; /* The AI player */
+    
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
     pieces = [[self chopImage:[NSImage imageNamed:@"pieces"] rows:2 columns: 5] retain];
@@ -66,13 +71,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     [self resetGame];
 }
 
+- (void)dealloc
+{
+    [ab release];
+    [super dealloc];
+}
+
+#pragma mark Alerts
+
 /** Displays an alert when "Game Over" is detected. */
 - (void)gameOverAlert
 {
     NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 
     int winner = [ab winner];
-    NSString *msg = winner == 2  ? @"You lost!" :
+    NSString *msg = winner == ai ? @"You lost!" :
                     !winner      ? @"You managed a draw!" :
                                    @"You won!";
     
@@ -85,8 +98,26 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
-/** Performs undo twice (once for AI, once for human) 
-and updates views in between. */
+
+/** Displays an alert when the "New Game" action is chosen. */
+- (void)newGameAlert
+{
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert setMessageText:@"Start a new game"];
+    [alert setInformativeText:@"Are you sure you want to terminate the current game and start a new one?"];
+    [alert addButtonWithTitle:@"Yes"];
+    [alert addButtonWithTitle:@"No"];
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [self resetGame];
+    }
+}
+
+#pragma mark IBActions
+
+/**
+Performs undo twice (once for AI, once for human) 
+and updates views in between.
+*/
 - (IBAction)undo:(id)sender
 {
     [ab undoLastMove];
@@ -95,39 +126,23 @@ and updates views in between. */
     [self autoMove];
 }
 
-/** Displays an alert when the "New Game" action is chosen. */
-- (void)newGameAlert
-{
-	NSAlert *alert = [[[NSAlert alloc] init] autorelease];
-	[alert setMessageText:@"Start a new game"];
-	[alert setInformativeText:@"Are you sure you want to terminate the current game and start a new one?"];
-	[alert addButtonWithTitle:@"Yes"];
-	[alert addButtonWithTitle:@"No"];
-	if ([alert runModal] == NSAlertFirstButtonReturn) {
-		[self resetGame];
-	}
-}
-
 - (IBAction)newGame:(id)sender
 {
     if ([ab countMoves]) {
-		[self newGameAlert];
-	}
-	else {
-		[self resetGame];
-	}
-}
-
-/** Make the AI perform a move. */
-- (void)aiMove
-{
-    if ([ab applyMoveFromSearchWithInterval:0.3]) {
-        [self autoMove];
+        [self newGameAlert];
     }
     else {
-        NSLog(@"AI cannot move");
+        [self resetGame];
     }
 }
+
+- (IBAction)hint:(id)sender
+{
+    id move = [ab moveFromSearchWithInterval:INTERVAL];
+    [board setHint:move];
+}
+
+#pragma mark Actions
 
 /** Perform the given move. */
 - (void)move:(id)m
@@ -154,12 +169,6 @@ and updates views in between. */
     return [ab currentState];
 }
 
-- (void)dealloc
-{
-    [ab release];
-    [super dealloc];
-}
-
 /** Figure out if the AI should move "by itself". */
 - (void)autoMove
 {
@@ -168,8 +177,13 @@ and updates views in between. */
     if ([ab isGameOver]) {
         [self gameOverAlert];
     }
-    if (2 == [ab playerTurn]) {
-        [self aiMove];
+    if (ai == [ab playerTurn]) {
+        if ([ab applyMoveFromSearchWithInterval:INTERVAL]) {
+            [self autoMove];
+        }
+        else {
+            NSLog(@"AI cannot move");
+        }
         [self updateViews];
     }
 }

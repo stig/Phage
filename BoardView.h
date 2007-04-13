@@ -26,6 +26,7 @@
 @interface BoardView : NSMatrix
 {
     Phage *controller;
+    NSDictionary *hint;
     NSArray *disks;
     NSArray *state;
     NSArray *legalMoves;
@@ -33,6 +34,7 @@
     BOOL selectedOrigin;
 }
 
+- (void)setHint:(id)hint;
 - (void)setController:(id)ctrl;
 - (void)setTheme:(id)ctrl;
 - (void)setState:(NSArray *)state moves:(NSArray *)moves;

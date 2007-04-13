@@ -22,14 +22,23 @@
 #import "Phage.h"
 #import "PhageState.h"
 
+@interface BoardView (BoardViewPrivate)
+- (void)drawState;
+@end
+
+
 @implementation BoardView
 
 - (void)dealloc
 {
+    [hint release];
     [disks release];
     [controller release];
     [super dealloc];
 }
+
+#pragma mark Setters
+
 
 - (void)setController:(id)this
 {
@@ -41,9 +50,57 @@
 
 - (void)setTheme:(id)this
 {
-    [disks release];
-    disks = [this retain];
+    if (disks != this) {
+        [disks release];
+        disks = [this retain];
+        [self drawState];        
+    }
 }
+
+- (void)setHint:(id)this
+{
+    if (hint != this) {
+        [hint release];
+        hint = [this retain];
+        [self drawState];        
+    }
+}
+
+
+- (void)setState:(NSArray *)this moves:(NSArray *)moves
+{
+    if (legalMoves != moves) {
+        [legalMoves release];
+        legalMoves = [moves retain];
+    }
+    
+    if (state != this) {
+        [state release];
+        state = [this retain];
+        
+        rows = [this count];
+        cols = [[this lastObject] count];
+        
+        int r, c;
+        [self getNumberOfRows:&r columns:&c];
+        if (r != rows || c != cols) {
+            [self renewRows:rows columns:cols];
+            
+            /* such.. a.. hack... - make the matrix resize, as this is
+            the only way I've found to get the cells to resize. */
+            NSSize s = [self frame].size;
+            [self setFrameSize:NSMakeSize(100,100)];
+            [self setFrameSize:s];
+        }
+        
+        /* when setting a new state, reset the hint */
+        [hint release];
+        hint = nil;
+    }
+    [self drawState];
+}
+
+#pragma mark Misc
 
 - (void)drawState
 {
@@ -70,36 +127,30 @@
             [self drawCell:ic];
         }
     }
+    
+    if (hint) {
+        int sr = [[hint objectForKey:@"srcRow"] intValue];
+        int sc = [[hint objectForKey:@"srcCol"] intValue];
+        int dr = [[hint objectForKey:@"dstRow"] intValue];
+        int dc = [[hint objectForKey:@"dstCol"] intValue];
+        
+        /*
+           The following two lines doesn't do anything yet. I have to
+           create a custome NSImageCell subclass and override
+           setHighlighted: first. I'll get to that.
+         */
+         [self highlightCell:YES atRow:sr column:sc];
+         [self highlightCell:YES atRow:dr column:dc];
+        
+        /* TODO: remove this when we use a custom NSImageCell subclass */
+        NSImageCell *ic = [self cellAtRow:sr column:sc];
+        [ic setImageFrameStyle:NSImageFrameButton];
+
+        ic = [self cellAtRow:dr column:dc];
+        [ic setImageFrameStyle:NSImageFrameButton];
+    }
+    
     [self setNeedsDisplay:YES];
-}
-
-- (void)setState:(NSArray *)this moves:(NSArray *)moves
-{
-    if (legalMoves != moves) {
-        [legalMoves release];
-        legalMoves = [moves retain];
-    }
-
-    if (state != this) {
-        [state release];
-        state = [this retain];
-        
-        rows = [this count];
-        cols = [[this lastObject] count];
-        
-        int r, c;
-        [self getNumberOfRows:&r columns:&c];
-        if (r != rows || c != cols) {
-            [self renewRows:rows columns:cols];
-            
-            /* such.. a.. hack... - make the matrix resize, as this is
-               the only way I've found to get the cells to resize. */
-            NSSize s = [self frame].size;
-            [self setFrameSize:NSMakeSize(100,100)];
-            [self setFrameSize:s];
-        }
-    }
-    [self drawState];
 }
 
 - (void)mouseDown:(NSEvent *)event
