@@ -56,10 +56,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return a;
 }
 
+
+- (void)resetGame
+{
+    [ab release];
+    ab = [[SBAlphaBeta alloc] initWithState:
+        [[PhageState new] autorelease]];
+    [self autoMove];
+}
+
 - (void)awakeFromNib
 {
-    ai = 2; /* The AI player */
-    
+
+    ai = 2;         /* The AI player plays second. */
+    automatic = NO; /* Should the AI move for both players? */
+
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
     pieces = [[self chopImage:[NSImage imageNamed:@"pieces"] rows:2 columns: 5] retain];
@@ -128,6 +139,7 @@ and updates views in between.
 
 - (IBAction)newGame:(id)sender
 {
+    automatic = NO;
     if ([ab countMoves]) {
         [self newGameAlert];
     }
@@ -140,6 +152,13 @@ and updates views in between.
 {
     id move = [ab moveFromSearchWithInterval:INTERVAL];
     [board setHint:move];
+}
+
+- (IBAction)toggleAutomatic:(id)sender
+{
+    automatic = automatic ? NO : YES;
+    NSLog(@"set automatic state: %u", automatic);
+    [self autoMove];
 }
 
 #pragma mark Actions
@@ -175,26 +194,19 @@ and updates views in between.
     [self updateViews];
     
     if ([ab isGameOver]) {
+        automatic = NO;
         [self gameOverAlert];
     }
-    if (ai == [ab playerTurn]) {
+    if (automatic || ai == [ab playerTurn]) {
         if ([ab applyMoveFromSearchWithInterval:INTERVAL]) {
             [self autoMove];
         }
         else {
+            automatic = NO;
             NSLog(@"AI cannot move");
         }
         [self updateViews];
     }
-}
-
-- (void)resetGame
-{
-    [ab release];
-    ab = [[SBAlphaBeta alloc] initWithState:
-        [[PhageState new] autorelease]];
-
-    [self autoMove];
 }
 
 - (void)updateViews

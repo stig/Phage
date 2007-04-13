@@ -25,12 +25,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 @interface Phage : NSObject {
     unsigned ai;
+    BOOL automatic;
     SBAlphaBeta *ab;
     NSArray *pieces;
     IBOutlet BoardView *board;
     IBOutlet NSTableView *whiteMoves, *blackMoves;
 }
 
+- (IBAction)toggleAutomatic:(id)sender;
 - (IBAction)hint:(id)sender;
 - (IBAction)undo:(id)sender;
 - (IBAction)newGame:(id)sender;
