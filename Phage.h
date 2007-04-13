@@ -30,6 +30,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     NSArray *pieces;
     IBOutlet BoardView *board;
     IBOutlet NSTableView *whiteMoves, *blackMoves;
+    IBOutlet NSProgressIndicator *progressIndicator;
 }
 
 - (IBAction)toggleAutomatic:(id)sender;

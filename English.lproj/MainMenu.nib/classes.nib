@@ -6,7 +6,12 @@
             ACTIONS = {hint = id; newGame = id; toggleAutomatic = id; undo = id; }; 
             CLASS = Phage; 
             LANGUAGE = ObjC; 
-            OUTLETS = {blackMoves = NSTableView; board = BoardView; whiteMoves = NSTableView; }; 
+            OUTLETS = {
+                blackMoves = NSTableView; 
+                board = BoardView; 
+                progressIndicator = NSProgressIndicator; 
+                whiteMoves = NSTableView; 
+            }; 
             SUPERCLASS = NSObject; 
         }
     ); 

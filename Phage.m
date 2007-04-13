@@ -150,7 +150,9 @@ and updates views in between.
 
 - (IBAction)hint:(id)sender
 {
+    [progressIndicator startAnimation:self];
     id move = [ab moveFromSearchWithInterval:INTERVAL];
+    [progressIndicator stopAnimation:self];
     [board setHint:move];
 }
 
@@ -198,6 +200,7 @@ and updates views in between.
         [self gameOverAlert];
     }
     if (automatic || ai == [ab playerTurn]) {
+        [progressIndicator startAnimation:self];
         if ([ab applyMoveFromSearchWithInterval:INTERVAL]) {
             [self autoMove];
         }
@@ -205,6 +208,7 @@ and updates views in between.
             automatic = NO;
             NSLog(@"AI cannot move");
         }
+        [progressIndicator stopAnimation:self];
         [self updateViews];
     }
 }
