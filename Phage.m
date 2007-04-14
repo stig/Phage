@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import "PhageState.h"
 
 
-#define INTERVAL 0.3
+#define INTERVAL 0.5
 
 @implementation Phage
 
@@ -150,7 +150,9 @@ and updates views in between.
 
 - (IBAction)showMoveHint:(id)sender
 {
-    [board setHint:[self findMove]];
+    [NSThread detachNewThreadSelector:@selector(searchMoveHint:)
+                     toTarget:self
+                   withObject:nil];
 }
 
 - (IBAction)toggleAutomatic:(id)sender
@@ -168,13 +170,46 @@ and updates views in between.
 
 #pragma mark Actions
 
-/** AI move */
-- (id)findMove
+- (void)performAiMove:(id)x
 {
-    [progressIndicator startAnimation:self];
+    id pool = [NSAutoreleasePool new];
+    
+    NSLog(@"in worker thread");
+    
+    [progressIndicator performSelectorOnMainThread:@selector(startAnimation:)
+                           withObject:self
+                        waitUntilDone:NO];
+
     id move = [ab moveFromSearchWithInterval:INTERVAL];
-    [progressIndicator stopAnimation:self];    
-    return move;
+    [self performSelectorOnMainThread:@selector(move:)
+                           withObject:move
+                        waitUntilDone:YES];
+
+    [progressIndicator performSelectorOnMainThread:@selector(stopAnimation:)
+                           withObject:self
+                        waitUntilDone:NO];
+
+    [pool release];
+}
+
+- (void)searchMoveHint:(id)x
+{
+    id pool = [NSAutoreleasePool new];
+    
+    [progressIndicator performSelectorOnMainThread:@selector(startAnimation:)
+                           withObject:self
+                        waitUntilDone:NO];
+
+    id move = [ab moveFromSearchWithInterval:INTERVAL];
+    [board performSelectorOnMainThread:@selector(setHint:)
+                           withObject:move
+                        waitUntilDone:YES];
+
+    [progressIndicator performSelectorOnMainThread:@selector(stopAnimation:)
+                           withObject:self
+                        waitUntilDone:NO];
+
+    [pool release];
 }
 
 /** Perform the given move. */
@@ -193,6 +228,7 @@ and updates views in between.
     }
     @finally {
         [self autoMove];
+        [self updateViews];
     }
 }
 
@@ -213,16 +249,9 @@ and updates views in between.
     }
 
     if (automatic || ai == [ab playerTurn]) {
-        id move = [self findMove];
-        if ([ab applyMove:move]) {
-            [self autoMove];
-        }
-        else {
-            automatic = NO;
-            NSLog(@"AI cannot move");
-        }
-        [progressIndicator stopAnimation:self];
-        [self updateViews];
+        [NSThread detachNewThreadSelector:@selector(performAiMove:)
+                         toTarget:self
+                       withObject:nil];
     }
 }
 
@@ -234,7 +263,6 @@ and updates views in between.
     [whiteMoves reloadData];
     [[board window] display];
 }
-
 
 #pragma mark NSTableView
 

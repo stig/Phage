@@ -47,7 +47,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)updateViews;
 - (void)autoMove;
 - (void)resetGame;
-- (id)findMove;
+- (void)searchMoveHint:(id)x;
+- (void)performAiMove:(id)x;
 
 /* for NSTableView */
 - (int)numberOfRowsInTableView:(NSTableView *)this;
