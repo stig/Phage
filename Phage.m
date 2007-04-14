@@ -151,9 +151,9 @@ and updates views in between.
 
 - (IBAction)showMoveHint:(id)sender
 {
-    [NSThread detachNewThreadSelector:@selector(searchMoveHint:)
+    [NSThread detachNewThreadSelector:@selector(performMoveOrHint:)
                      toTarget:self
-                   withObject:nil];
+                   withObject:board];
 }
 
 - (IBAction)toggleAutomatic:(id)sender
@@ -171,7 +171,7 @@ and updates views in between.
 
 #pragma mark Actions
 
-- (void)performAiMove:(id)x
+- (void)performMoveOrHint:(id)target
 {
     id pool = [NSAutoreleasePool new];    
     [searchLock lock];
@@ -181,32 +181,18 @@ and updates views in between.
                         waitUntilDone:NO];
 
     id move = [ab moveFromSearchWithInterval:INTERVAL];
-    [self performSelectorOnMainThread:@selector(move:)
-                           withObject:move
-                        waitUntilDone:YES];
-
-    [progressIndicator performSelectorOnMainThread:@selector(stopAnimation:)
-                           withObject:self
-                        waitUntilDone:NO];
-
-    [searchLock unlock];
-    [pool release];
-}
-
-- (void)searchMoveHint:(id)x
-{
-    id pool = [NSAutoreleasePool new];
-    [searchLock lock];
     
-    [progressIndicator performSelectorOnMainThread:@selector(startAnimation:)
-                           withObject:self
-                        waitUntilDone:NO];
+    if (target == board) {
+        [board performSelectorOnMainThread:@selector(setHint:)
+                                withObject:move
+                             waitUntilDone:YES];
 
-    id move = [ab moveFromSearchWithInterval:INTERVAL];
-    [board performSelectorOnMainThread:@selector(setHint:)
-                           withObject:move
-                        waitUntilDone:YES];
-
+    } else {
+        [self performSelectorOnMainThread:@selector(move:)
+                               withObject:move
+                            waitUntilDone:YES];
+    }
+    
     [progressIndicator performSelectorOnMainThread:@selector(stopAnimation:)
                            withObject:self
                         waitUntilDone:NO];
@@ -219,11 +205,6 @@ and updates views in between.
 - (void)move:(id)m
 {
     @try {
-        id moves = [ab movesAvailable];
-        if ([moves indexOfObject:m] == NSNotFound)
-            [NSException raise:@"illegal move" 
-                        format:@"illegal move"];
-        
         [ab applyMove:m];
     }
     @catch (id any) {
@@ -252,7 +233,7 @@ and updates views in between.
     }
 
     if (automatic || ai == [ab playerTurn]) {
-        [NSThread detachNewThreadSelector:@selector(performAiMove:)
+        [NSThread detachNewThreadSelector:@selector(performMoveOrHint:)
                          toTarget:self
                        withObject:nil];
     }
