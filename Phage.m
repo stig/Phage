@@ -68,8 +68,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)awakeFromNib
 {
 
-    ai = 2;         /* The AI player plays second. */
-    automatic = NO; /* Should the AI move for both players? */
+    ai = 2;                         /* The AI player plays second. */
+    automatic = NO;                 /* Should the AI move for both players? */
+    searchLock = [NSLock new];      /* Only perform one search at a time. */
 
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
@@ -172,9 +173,8 @@ and updates views in between.
 
 - (void)performAiMove:(id)x
 {
-    id pool = [NSAutoreleasePool new];
-    
-    NSLog(@"in worker thread");
+    id pool = [NSAutoreleasePool new];    
+    [searchLock lock];
     
     [progressIndicator performSelectorOnMainThread:@selector(startAnimation:)
                            withObject:self
@@ -189,12 +189,14 @@ and updates views in between.
                            withObject:self
                         waitUntilDone:NO];
 
+    [searchLock unlock];
     [pool release];
 }
 
 - (void)searchMoveHint:(id)x
 {
     id pool = [NSAutoreleasePool new];
+    [searchLock lock];
     
     [progressIndicator performSelectorOnMainThread:@selector(startAnimation:)
                            withObject:self
@@ -209,6 +211,7 @@ and updates views in between.
                            withObject:self
                         waitUntilDone:NO];
 
+    [searchLock unlock];
     [pool release];
 }
 
