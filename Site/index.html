@@ -20,6 +20,7 @@
     h2 { font-size: 1.2em; }
     a:hover { background:#888; }
     .blurb { font-weight: bold; }
+    .meta { color: grey }
     </style>
 </head>
 
@@ -29,24 +30,42 @@
     <div class="blurb">
     <img src="images/phage.png" title="A game state in Phage" />
     
-    <p>A game of ruse, conquest &amp; sacrifice.</p>
-    
-    <p>Conquer land to win&mdash;avoid getting trapped between minefields in the process. </p>
-    
-    <p>Download <a href="@URL@">Phage @VERSION@</a> for OS&nbsp;X and start playing! </p>
+    <p>A game of ruse, conquest &amp; sacrifice. Win by outwitting your
+    opponent and trapping him between minefields.</p>
 
     </div>
     
-    <h2>Get in touch!</h2>
+    <p>Phage is an abstract strategy game for two players. This Cocoa
+    implementation pits a human player against an AI.</p>
     
-    <p>I can be reached at <a href="mailto:stig@brautaset.org">stig@brautaset.org</a>, and I'd love to hear from you. See my <a href="http://brautaset.org/about/">contact</a> page for other ways to get in touch with me.</p>
+    <p>Each player has four pieces, each of which can make at most 7
+    moves. This makes for swift games, which you can finish over a cup
+    of tea!</p>
 
-    <h2>Copyright, license and all that Jazz</h2>
+    <p><a href="@URL@">Download Phage @VERSION@</a> (0.5MB disk image),
+    and start playing today! This is a Universal Binary, which should
+    run on Mac OS X 10.3.9 and later. </p> 
+
+    <p>The interface is still a bit crude, but functional. The feature
+    set is small, but as of version 0.2 you can ask the AI to suggest a
+    move for you (just hit the Tools menu, then chose the "Move hint"
+    option).</p>
+
+    <hr/>
+    <div class="meta">
     
-    <p>Phage is Copyright &copy; 2003 Steve Gardner. <br/>
-    This Cocoa version is Copyright &copy; 2007 Stig Brautaset. </p>
+    <p><a href="http://abstraga.blogspot.com/">Steve Gardner</a>
+    designed Phage in 2003. <a href="mailto:stig@brautaset.org">Stig
+    Brautaset</a> wrote this Cocoa version (first released in 2007).</p>
     
-    <p>You can get the source (released under the GPL) from my <a href="http://svn.brautaset.org/Phage/">Subversion</a> repository. If you want to hack on it you first need to install <a href="http://code.brautaset.org/SBAlphaBeta/">SBAlphaBeta</a>.</p>
+    <p>This program is Free Software, and released under the GPL. You
+    can get the source from my <a
+    href="http://svn.brautaset.org/Phage/">Subversion</a> repository.
+    If you want to hack on it you first need to install <a
+    href="http://code.brautaset.org/SBAlphaBeta/">SBAlphaBeta</a>.</p>
     
+    </div>
+
 </body>
 </html>
+
