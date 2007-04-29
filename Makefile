@@ -8,10 +8,10 @@ URL=http://code.brautaset.org/$(NAME)/download/$(DMG)
 SCPUP=stig@brautaset.org:code/$(NAME)/download/$(DMG)
 
 enclosure: $(DMG)
-	@echo "<pubDate>`date +"%a, %b %e %Y %H:%M:%S %Z"`</pubDate>";
-	@echo '<enclosure url="$(URL)" '
-	@echo -n '    ' length="`stat $(DMG) | cut -d' ' -f8`"
-	@echo ' type="application/octet-stream"/>'
+	@echo    "<pubDate>`date +"%a, %b %e %Y %H:%M:%S %Z"`</pubDate>";
+	@echo    "<enclosure url='$(URL)' "
+	@echo -n "    length='`stat $(DMG) | cut -d" "  -f8`'"
+	@echo    ' type="application/octet-stream"/>'
 
 
 site: Site/index.html Site/appcast.xml
