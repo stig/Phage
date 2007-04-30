@@ -1,5 +1,5 @@
 NAME=Phage
-VERSION=0.2
+VERSION=0.2.1
 
 INSTALLPATH=/tmp/$(NAME).dst/Users/stig/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)

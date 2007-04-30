@@ -8,6 +8,20 @@
         <description>Most recent changes with links to updates.</description> 
         <language>en</language> 
 
+
+        <item> 
+            <title>Phage 0.2.1</title>
+            <description><![CDATA[
+            Fixed a bug that caused Phage to be confused about whether
+            you or the AI had just won the game. This would sometimes
+            cause Phage to declare the AI winner of the game, when in
+            fact you had won. Pesky cheating AIs...
+			]]></description> 
+			<pubDate>Mon, Apr 30 2007 10:32:56 BST</pubDate>
+			<enclosure url='http://code.brautaset.org/Phage/download/Phage_0.2.1.dmg' 
+				length='530268' type="application/octet-stream"/>
+ 		</item> 
+
         <item> 
             <title>Phage 0.2</title> 
             <description><![CDATA[
