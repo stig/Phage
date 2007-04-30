@@ -8,10 +8,13 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
+#import <SBAlphaBeta/SBAlphaBeta.h>
 #import <PhageState.h>
 
-@interface PhageUnit : SenTestCase {
 
+@interface PhageUnit : SenTestCase {
+    PhageState *state;
+    SBAlphaBeta *ab;
 }
 
 @end

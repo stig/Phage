@@ -140,15 +140,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     if ([[self movesAvailable] count])
         [NSException raise:@"not an end state" format:@"still legal moves"];
 
-    double fitness = [self currentFitness];
-    if (fitness == 0.0)
-        return 0.0;
-
-    if (fitness < 0.0)
-        return player == White ? fitness : -fitness;
-        
-    [NSException raise:@"impossible" format:@"huh? what trickery is this?"];
-    return -1;
+    return [self currentFitness];
 }
 
 - (NSArray *)movesAvailable
