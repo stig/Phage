@@ -109,7 +109,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     }
 }
 
-
 /** Displays an alert when the "New Game" action is chosen. */
 - (void)newGameAlert
 {
@@ -137,6 +136,7 @@ and updates views in between.
     [self autoMove];
 }
 
+/** Initiate a new game. */
 - (IBAction)newGame:(id)sender
 {
     automatic = NO;
@@ -181,11 +181,6 @@ and updates views in between.
 - (void)move:(id)m
 {
     @try {
-        id moves = [ab movesAvailable];
-        if ([moves indexOfObject:m] == NSNotFound)
-            [NSException raise:@"illegal move" 
-                        format:@"illegal move"];
-        
         [ab applyMove:m];
     }
     @catch (id any) {
