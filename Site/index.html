@@ -3,24 +3,7 @@
 <html>
 <head>
     <title>Phage - an abstract strategy game for OS X</title>
-    <style type="text/css">
-    body {  width: 40em;
-            margin: 2em;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 0.8em;
-            font-family: Verdana, Arial, sans-serif;
-    }
-    img {   float: left;
-            margin-right: 1.5em;
-            margin-bottom: 1.5em;
-            width: 18.75em; /* 16.75 * 2 + 1.5 = 35 */
-    }
-    h1 { color: #921; text-align: center; font-size: 1.6em; }
-    a:hover { background:#888; }
-    .blurb { font-weight: bold; }
-    .meta { color: grey }
-    </style>
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 </head>
 
 <body>
@@ -33,7 +16,7 @@
     opponent and trapping him between minefields.</p>
 
     </div>
-    
+
     <p>Phage is an abstract strategy game for two players. This Cocoa
     implementation pits a human player against an AI.</p>
     
@@ -41,15 +24,16 @@
     able to make at most 7 moves, making for swift games&mdash;which
     means you can finish a game over a cup of tea!</p>
 
-    <p><a href="@URL@">Download Phage @VERSION@</a> (0.5MB disk image).
-    This is a Universal Binary, and should run on Mac OS X 10.3.9 and
-    later. Please send praise, bugs &amp; feature requests to <a
-    href="mailto:stig@brautaset.org">stig@brautaset.org</a>.</p> 
-
     <p>The interface is still a bit crude, but functional. The feature
     set is small, but as of version 0.2 you can ask the AI to suggest a
     move for you (just hit the Tools menu, then chose the "Move hint"
     option).</p>
+
+    <p><a href="@URL@">Download Phage @VERSION@</a> (0.5MB disk image).
+    This is a Universal Binary, and should run on Mac OS X 10.3.9 and
+    later. New in this release:</p>
+    
+    @DESCRIPTION@
 
     <hr/>
     <div class="meta">
@@ -57,14 +41,15 @@
     <p><a href="http://abstraga.blogspot.com/">Steve Gardner</a>
     designed Phage in 2003.<br/>
     <a href="mailto:stig@brautaset.org">Stig Brautaset</a> wrote this
-    Cocoa version (first released in 2007).</p>
+    Cocoa version (first released in 2007). Please send praise, bugs
+    &amp; feature requests his way. </p>
     
     <p>This program is Free Software, and released under the GPL. You
     can get the <a href="http://svn.brautaset.org/Phage/">source</a>
     from my Subversion repository. If you want to hack on it you first
     need to install <a
     href="http://code.brautaset.org/SBAlphaBeta/">SBAlphaBeta</a>.</p>
-    
+
     </div>
 
 </body>
