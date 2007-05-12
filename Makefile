@@ -4,8 +4,8 @@ VERSION=0.2.1
 INSTALLPATH=/tmp/$(NAME).dst/Users/stig/Applications/$(NAME).app
 RELEASENAME=$(NAME)_$(VERSION)
 DMG=$(RELEASENAME).dmg
-URL=http://code.brautaset.org/$(NAME)/download/$(DMG)
-SCPUP=stig@brautaset.org:code/$(NAME)/download/$(DMG)
+DMGURL=http://code.brautaset.org/files/$(DMG)
+SCPUP=stig@brautaset.org:code/files/
 
 enclosure: $(DMG)
 	@echo    "<pubDate>`date +"%a, %b %e %Y %H:%M:%S %Z"`</pubDate>";
@@ -16,12 +16,12 @@ enclosure: $(DMG)
 
 site: Site/style.css Site/index.html Site/appcast.xml
 	rm -rf _site; cp -r Site _site
-	perl -pi -e 's{\@URL\@}{$(URL)}g' _site/*.html
+	perl -pi -e 's{\@URL\@}{$(DMGURL)}g' _site/*.html
 	perl -pi -e 's{\@VERSION\@}{$(VERSION)}g' _site/*.html
 	perl -pi -e "s{\@DESCRIPTION\@}{`extractDescription.pl Site/appcast.xml`}g" _site/*.html
 
 upload-site: site
-	rsync -e ssh -ruv --delete --exclude download* _site/ stig@brautaset.org:code/$(NAME)/
+	rsync -e ssh -ruv --delete _site/ stig@brautaset.org:code/$(NAME)/
 
 install: *.m
 	setCFBundleVersion.pl $(VERSION)
