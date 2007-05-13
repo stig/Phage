@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import "BoardView.h"
 
 @interface Phage : NSObject {
-    unsigned ai;
+    unsigned ai, level;
     BOOL automatic, highlightMoves;
     SBAlphaBeta *ab;
     NSArray *pieces;

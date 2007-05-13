@@ -23,10 +23,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #import "PhageState.h"
 
 
-#define INTERVAL 0.3
-
 @implementation Phage
 
++ (void)initialize
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+        @"3",           @"ai_level",
+        nil]];
+}
 
 - (NSArray *)chopImage:(NSImage *)image rows:(unsigned)rows columns:(unsigned)cols
 {
@@ -59,18 +64,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)resetGame
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    level = [defaults integerForKey:@"ai_level"];
+    ai = 2;
+    automatic = NO; /* Should the AI move for both players? */
+
+    id st = [[PhageState new] autorelease];
     [ab release];
-    ab = [[SBAlphaBeta alloc] initWithState:
-        [[PhageState new] autorelease]];
+    ab = [[SBAlphaBeta alloc] initWithState:st];
+
     [self autoMove];
 }
 
 - (void)awakeFromNib
 {
-
-    ai = 2;         /* The AI player plays second. */
-    automatic = NO; /* Should the AI move for both players? */
-
     [[board window] makeKeyAndOrderFront:self];
     [board setController:self];
     pieces = [[self chopImage:[NSImage imageNamed:@"pieces"] rows:2 columns: 5] retain];
@@ -172,7 +179,16 @@ and updates views in between.
 - (id)findMove
 {
     [progressIndicator startAnimation:self];
-    id move = [ab moveFromSearchWithInterval:INTERVAL];
+
+    id move = nil;
+    if (level < 4) {
+        move = [ab moveFromSearchWithPly:level];
+    } else {
+        int ply = level * 10.0;
+        NSTimeInterval interval = (NSTimeInterval)(ply * ply / 1000.0);
+        move = [ab moveFromSearchWithInterval:interval];
+    }
+
     [progressIndicator stopAnimation:self];    
     return move;
 }
