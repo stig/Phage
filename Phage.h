@@ -19,34 +19,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import <Cocoa/Cocoa.h>
-#import <SBAlphaBeta/SBAlphaBeta.h>
+#import <BoardGame/SBGame.h>
 #import "BoardView.h"
 
-@interface Phage : NSObject {
-    unsigned ai, level;
-    BOOL automatic, highlightMoves;
-    SBAlphaBeta *ab;
+@interface Phage : SBGame {
+    BOOL highlightMoves;
     NSArray *pieces;
     IBOutlet BoardView *board;
     IBOutlet NSTableView *whiteMoves, *blackMoves;
-    IBOutlet NSProgressIndicator *progressIndicator;
 }
 
 - (IBAction)toggleHighlightMoves:(id)sender;
-- (IBAction)toggleAutomatic:(id)sender;
 - (IBAction)showMoveHint:(id)sender;
-- (IBAction)undo:(id)sender;
-- (IBAction)newGame:(id)sender;
 
-- (id)state;
-- (void)move:(id)move;
-- (void)gameOverAlert;
-- (void)newGameAlert;
-
-- (void)updateViews;
-- (void)autoMove;
-- (void)resetGame;
 - (id)findMove;
 
 /* for NSTableView */
