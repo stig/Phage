@@ -100,24 +100,30 @@
 
 - (void)drawState
 {
-    /* ick! */
-    int map[Dirty+1] = { 0, };
-    map[ Empty ] = 0;
-    map[ Black | Diamond ]  = 1;
-    map[ Black | Triangle ] = 2;
-    map[ Black | Square ]   = 3;
-    map[ Black | Circle ]   = 4;
-    map[ White | Circle ]   = 5;
-    map[ White | Square ]   = 6;
-    map[ White | Triangle ] = 7;
-    map[ White | Diamond ]  = 8;
-    map[ Dirty ] = 9;
+
+    NSLog(@"hello!");
+
+    /* Should really have a dictionary with the images for each slot. */
+    id map = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"0", @"Empty",
+        @"1", @"NorthDiamond",
+        @"2", @"NorthTriangle",
+        @"3", @"NorthSquare",
+        @"4", @"NorthCircle",
+        @"5", @"SouthCircle",
+        @"6", @"SouthSquare",
+        @"7", @"SouthTriangle",
+        @"8", @"SouthDiamond",
+        @"9", @"Dirty",
+        nil];
 
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
-            int slot = [[[state objectAtIndex:r] objectAtIndex:c] intValue];
+            id slot = [[state objectAtIndex:r] objectAtIndex:c];
+            if ([slot isKindOfClass:[NSNull class]])
+                slot = @"Empty";
             NSImageCell *ic = [self cellAtRow:r column:c];
-            [ic setImage:[disks objectAtIndex:map[slot]]];
+            [ic setImage:[disks objectAtIndex:[[map objectForKey:slot] intValue]]];
             [ic setImageScaling:NSScaleToFit];
             [ic setImageFrameStyle:NSImageFrameNone];
             [self drawCell:ic];

@@ -130,20 +130,43 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (id)tableView:(NSTableView *)this objectValueForTableColumn:(NSTableColumn *)column row:(int)row
 {
-    int offset = this == whiteMoves ? 5 : 1;
-    id piece;
+    BOOL north = this == blackMoves;
+    
+    /* Should really have a dictionary with the images for each slot. */
+    id map = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"0", @"Empty",
+        @"1", @"NorthDiamond",
+        @"2", @"NorthTriangle",
+        @"3", @"NorthSquare",
+        @"4", @"NorthCircle",
+        @"5", @"SouthCircle",
+        @"6", @"SouthSquare",
+        @"7", @"SouthTriangle",
+        @"8", @"SouthDiamond",
+        @"9", @"Dirty",
+        nil];
+
+    id cells;
+    BOOL img = NO;
+    id state = [alphaBeta currentState];
     switch ([this columnWithIdentifier:[column identifier]]) {
         case 0:
-            piece = [pieces objectAtIndex:offset + row];
+            img = YES;
+            cells = north ? [state northPieces] : [state southPieces];
             break;
         case 1:
-            piece = [NSNumber numberWithInt: [[self state] movesLeftForIndex: offset + row]];
+            cells = north ? [state northMovesLeft] : [state southMovesLeft];
             break;
         default:
             [NSException raise:@"impossible"
                         format:@"I was passed a column I don't know about"];
     }
-    return piece;
+    id cell = [cells objectAtIndex:row];
+    if (img) {
+        int idx = [[map objectForKey:cell] intValue];
+        return [pieces objectAtIndex:idx];
+    }
+    return cell;
 }
 
 

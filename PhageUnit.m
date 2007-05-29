@@ -40,8 +40,8 @@
     STAssertEqualsWithAccuracy([state currentFitness], (double)9.0, 0.00001, nil);
 
     /* dirty, dirty test (make go away) */
-    STAssertEquals(state->board[4][6], (int)Dirty, nil);
-    STAssertEquals(state->board[3][6], (int)(White | Circle), nil);
+    STAssertEqualObjects(state->board[4][6], @"Dirty", nil);
+    STAssertEqualObjects(state->board[3][6], @"SouthCircle", nil);
     
     moves = [state movesAvailable];
     STAssertEquals([moves count], (unsigned)59, @"expected number of moves for black");
@@ -49,8 +49,8 @@
     [state undoTransformWithMove:move];
 
     /* dirty, dirty test (make go away) */
-    STAssertEquals(state->board[4][6], (int)(White | Circle), nil);
-    STAssertEquals(state->board[3][6], (int)Empty, nil);
+    STAssertEqualObjects(state->board[4][6], @"SouthCircle", nil);
+    STAssertNil(state->board[3][6], nil);
 
     moves = [state movesAvailable];
     STAssertEquals([moves count], (unsigned)61, @"expected number of moves again");
@@ -61,8 +61,8 @@
 {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if (state->board[i][j] == Empty)
-                state->board[i][j] = Dirty;
+            if (!state->board[i][j])
+                state->board[i][j] = @"Dirty";
         }
     }
     STAssertEquals([state endStateScore], (double)0.0, nil);
@@ -78,7 +78,7 @@
     ab = [SBAlphaBeta newWithState:state];
 
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    state->board[0][6] = Empty;
+    state->board[0][6] = nil;
     STAssertEquals([state endStateScore], (double)-1.0, nil);
     STAssertEquals([ab winner], (unsigned)2, nil);
 }
@@ -89,8 +89,8 @@
     ab = [SBAlphaBeta newWithState:state];
 
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    state->board[5][6] = Empty;
-    state->board[6][6] = Empty;
+    state->board[5][6] = nil;
+    state->board[6][6] = nil;
     [ab applyMoveFromSearchWithInterval:0.3];
     STAssertEquals([state endStateScore], (double)-1.0, nil);
     STAssertEquals([ab winner], (unsigned)1, nil);

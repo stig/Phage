@@ -28,61 +28,49 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     self = [super init];
     if (self) {
     
-        player = White;
-        
-        /* clear the board */
-        for (int r = 0; r < 8; r++)
-            for (int c = 0; c < 8; c++)
-                board[r][c] = Empty;
+        player = @"South";
         
         /* drop the pieces in their initial locations */
-        board[7][0] = White | Diamond;
-        board[6][2] = White | Triangle;
-        board[5][4] = White | Square;
-        board[4][6] = White | Circle;
+        board[7][0] = @"SouthDiamond";
+        board[6][2] = @"SouthTriangle";
+        board[5][4] = @"SouthSquare";
+        board[4][6] = @"SouthCircle";
 
-        board[3][1] = Black | Circle;
-        board[2][3] = Black | Square;
-        board[1][5] = Black | Triangle;
-        board[0][7] = Black | Diamond;
+        board[3][1] = @"NorthCircle";
+        board[2][3] = @"NorthSquare";
+        board[1][5] = @"NorthTriangle";
+        board[0][7] = @"NorthDiamond";
         
         /* set how many moves can be done by each player */
-        for (int i = 0; i < Dirty; i++)
-            remainingMoves[i] = 7;
-        
+        movesLeft = [NSMutableDictionary new];
+        for (int i = 0; i < 8; i++)
+            for (int j = 0; j < 8; j++)
+                if (board[i][j])
+                    [movesLeft setObject:@"7" forKey:board[i][j]];
         
     }
+
     return self;
 }
 
 - (int)movesLeftForIndex:(int)x
 {
-    int piece;
-    /* 
-    map[ Black | Circle ] = 1;
-    map[ Black | Diamond ] = 2;
-    map[ Black | Square ] = 3;
-    map[ Black | Triangle ] = 4;
-    map[ White | Circle ] = 5;
-    map[ White | Diamond ] = 6;
-    map[ White | Square ] = 7;
-    map[ White | Triangle ] = 8;
-    */
+    id piece;
     switch (x) {
-        case 1: piece = Black | Diamond;    break;
-        case 2: piece = Black | Triangle;   break;
-        case 3: piece = Black | Square;     break;
-        case 4: piece = Black | Circle;     break;
-        case 5: piece = White | Circle;     break;
-        case 6: piece = White | Square;     break;
-        case 7: piece = White | Triangle;   break;
-        case 8: piece = White | Diamond;    break;
+        case 1: piece = @"NorthDiamond";    break;
+        case 2: piece = @"NorthTriangle";   break;
+        case 3: piece = @"NorthSquare";     break;
+        case 4: piece = @"NorthCircle";     break;
+        case 5: piece = @"SouthCircle";     break;
+        case 6: piece = @"SouthSquare";     break;
+        case 7: piece = @"SouthTriangle";   break;
+        case 8: piece = @"SouthDiamond";    break;
         default:
             [NSException raise:@"unsupported input"
                         format:@"unsupported input (%d)", x];
     }
     
-    return remainingMoves[piece];
+    return [[movesLeft objectForKey:piece] intValue];
 }
 
 + (id)moveFromR:(int)sr c:(int)sc toR:(int)r c:(int)c
@@ -97,10 +85,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (NSArray *)moveFromRow:(int)r col:(int)c inDirection:(int)dir
 {
-    int p = board[r][c];
+    id p = board[r][c];
     id moves = [NSMutableArray array];
 
-    if (!remainingMoves[p])
+    if ([[movesLeft objectForKey:p] intValue] < 1)
         return moves;
     
     int dr = r, dc = c;
@@ -116,7 +104,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
             case NW:    dr--; dc--; break;
         }
         
-        if (dr > 7 || dr < 0 || dc > 7 || dc < 0 || board[dr][dc] != Empty)
+        if (dr > 7 || dr < 0 || dc > 7 || dc < 0 || board[dr][dc])
             break;
         
         [moves addObject:[PhageState moveFromR:r c:c toR:dr c:dc]];
@@ -128,11 +116,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     unsigned me = [[self movesAvailable] count];
 
-    player = player == White ? Black : White;
+    [self togglePlayer];
     unsigned you = [[self movesAvailable] count];
 
-    player = player == White ? Black : White;
+    [self togglePlayer];
     return (double)me - you;
+}
+
+- (void)togglePlayer
+{
+    player = [player isEqual:@"South"] ? @"North" : @"South";
 }
 
 - (double)endStateScore
@@ -143,31 +136,34 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return [self currentFitness];
 }
 
+- (BOOL)legalDirection:(int)d forPiece:(NSString*)p
+{
+    if ([p hasSuffix:@"Triangle"] && !( d == E || d == W || ([p hasPrefix:@"North"] && d == S) || ([p hasPrefix:@"South"] && d == N))) {
+        return 0;
+
+    } else if ([p hasSuffix:@"Square"] && d != NE && d != SE && d != SW && d != NW ) {
+        return 0;
+    
+    } else if ([p hasSuffix:@"Diamond"] && d != N && d != E && d != S && d != W ) {
+        return 0;
+    
+    }
+    return 1;
+}
+
 - (NSArray *)movesAvailable
 {
     id moves = [NSMutableArray array];
     for (int r = 0; r < 8; r++) {
         for (int c = 0; c < 8; c++) {
-            int p = board[r][c];
+            id p = board[r][c];
 
-            /* Skip this slot if it is empty,
-               has been occupied before,
-               or is occupied by the wrong player */
-            if ((p == Empty) || (p & Dirty) || !(p & player))
+            if (!p || ![p hasPrefix:player])
                 continue;
 
             for (int d = N; d < DIRECTIONS; d++) {
-            
-                if (p & Triangle && !( d == E || d == W || ((p & Black) && d == S) || ((p & White) && d == N))) {
+                if (![self legalDirection:d forPiece:p])
                     continue;
-
-                } else if ((p & Square) && d != NE && d != SE && d != SW && d != NW ) {
-                    continue;
-                
-                } else if ((p & Diamond) && d != N && d != E && d != S && d != W ) {
-                    continue;
-                
-                }
                 [moves addObjectsFromArray:[self moveFromRow:r col:c inDirection:d]];
             }
         }
@@ -183,13 +179,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     int tr = [[move valueForKey:@"dstRow"] intValue];
     int tc = [[move valueForKey:@"dstCol"] intValue];
 
-    int p = board[r][c];
-    board[r][c] = Dirty;
+    id p = board[r][c];
+    board[r][c] = @"Dirty";
     board[tr][tc] = p;
 
-    remainingMoves[p]--;
+    [movesLeft setObject:[NSNumber numberWithInt:[[movesLeft objectForKey:p] intValue]-1]
+                  forKey:p];
 
-    player = player == White ? Black : White;
+    [self togglePlayer];
 }
 
 - (void)undoTransformWithMove:(id)move
@@ -199,18 +196,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     int tr = [[move valueForKey:@"dstRow"] intValue];
     int tc = [[move valueForKey:@"dstCol"] intValue];
 
-    int p = board[tr][tc];
-    board[tr][tc] = Empty;
+    id p = board[tr][tc];
+    board[tr][tc] = nil;
     board[r][c] = p;
 
-    remainingMoves[p]++;
+    [movesLeft setObject:[NSNumber numberWithInt:[[movesLeft objectForKey:p] intValue]+1]
+                  forKey:p];
 
-    player = player == White ? Black : White;
+    [self togglePlayer];
 }
 
 - (int)player
 {
-    return player == White ? 1 : 2;
+    return [player isEqual: @"South"] ? 1 : 2;
 }
 
 - (NSArray *)array
@@ -218,8 +216,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     id a = [NSMutableArray array];
     for (int i = 0; i < 8; i++) {
         id b = [NSMutableArray array];
-        for (int j = 0; j < 8; j++)
-            [b addObject:[NSNumber numberWithInt:board[i][j]]];
+        for (int j = 0; j < 8; j++) {
+            if (!board[i][j])
+                [b addObject:[NSNull null]];
+            else 
+                [b addObject:board[i][j]];
+        }
         [a addObject:b];
     }
     return a;
@@ -229,5 +231,31 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     return [[self array] description];
 }
+
+
+- (NSArray *)northPieces
+{
+    return [@"NorthDiamond NorthTriangle NorthSquare NorthCircle"
+        componentsSeparatedByString:@" "];
+}
+
+- (NSArray *)southPieces
+{
+    return [@"SouthCircle SouthSquare SouthTriangle SouthDiamond"
+        componentsSeparatedByString:@" "];
+}
+
+- (NSArray *)northMovesLeft
+{
+    return [movesLeft objectsForKeys:[self northPieces]
+                      notFoundMarker:[NSNull null]];
+}
+
+- (NSArray *)southMovesLeft
+{
+    return [movesLeft objectsForKeys:[self southPieces]
+                      notFoundMarker:[NSNull null]];
+}
+
 
 @end
