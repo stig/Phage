@@ -98,14 +98,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 {
     [progressIndicator startAnimation:self];
 
-    id move = nil;
-    if (level < 4) {
-        move = [alphaBeta moveFromSearchWithPly:level];
-    } else {
-        int ply = level * 10.0;
-        NSTimeInterval interval = (NSTimeInterval)(ply * ply / 1000.0);
-        move = [alphaBeta moveFromSearchWithInterval:interval];
-    }
+    int ply = level * 10.0;
+    NSTimeInterval interval = (NSTimeInterval)(ply * ply / 1000.0);
+    id move = [alphaBeta moveFromSearchWithInterval:interval];
 
     [progressIndicator stopAnimation:self];    
     return move;
