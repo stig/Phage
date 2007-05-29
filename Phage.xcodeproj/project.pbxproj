@@ -30,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5370392E0C0B219000496438 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7B78E350BFFC06B00FB2E1E /* BoardGame.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = BoardGame;
+		};
 		53E862C80BC17CC800580DBC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53E862BE0BC17CC800580DBC /* SBAlphaBeta.xcodeproj */;
@@ -76,7 +83,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = E7B78E350BFFC06B00FB2E1E /* BoardGame.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 8DC2EF5B0486A6940098B216 /* BoardGame.framework */;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
 			remoteInfo = BoardGame;
 		};
 /* End PBXContainerItemProxy section */
@@ -293,6 +300,7 @@
 			);
 			dependencies = (
 				53E8632B0BC17F8F00580DBC /* PBXTargetDependency */,
+				5370392F0C0B219000496438 /* PBXTargetDependency */,
 			);
 			name = Phage;
 			productInstallPath = "$(HOME)/Applications";
@@ -427,6 +435,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5370392F0C0B219000496438 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BoardGame;
+			targetProxy = 5370392E0C0B219000496438 /* PBXContainerItemProxy */;
+		};
 		53E8632B0BC17F8F00580DBC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SBAlphaBeta;
