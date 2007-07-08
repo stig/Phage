@@ -8,7 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-#import <SBAlphaBeta/SBAlphaBeta.h>
+#import <AlphaBeta/AlphaBeta.h>
 #import <PhageState.h>
 
 
