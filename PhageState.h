@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-#import <SBAlphaBeta/SBAlphaBetaState.h>
+#import <AlphaBeta/AlphaBeta.h>
 
 /* directions to move in */
 enum { N = 0, NE, E, SE, S, SW, W, NW, DIRECTIONS };
