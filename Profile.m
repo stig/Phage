@@ -1,12 +1,11 @@
 #include <Cocoa/Cocoa.h>
 #include <AlphaBeta/AlphaBeta.h>
-#include <SBReversi/SBReversiState.h>
+#include "PhageState.h"
 
 int main(int argc, char **argv)
 {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
     NSMutableDictionary *opts = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-        @"0",           @"--mutable",
         @"1",           @"--count",
         @"0",           @"--skip",
         @"5",           @"--ply",
@@ -21,10 +20,7 @@ int main(int argc, char **argv)
         [opts setObject:[NSString stringWithCString:argv[i+1]]
                  forKey:[NSString stringWithCString:argv[i]]];
 
-    Class class = [[opts objectForKey:@"--mutable"] intValue]
-        ? [SBMutableReversiState class]
-        : [SBReversiState class];
-    SBAlphaBeta *ab = [SBAlphaBeta newWithState:[class new]];
+    SBAlphaBeta *ab = [SBAlphaBeta newWithState:[PhageState new]];
 
     int skip = [[opts objectForKey:@"--skip"] intValue];
     for (int i = 0; i < skip; i++)

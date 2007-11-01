@@ -55,6 +55,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return self;
 }
 
+- (id)copyWithZone:(NSZone*)zone
+{
+	return NSCopyObject(self, 0, zone);
+}
+
 - (int)movesLeftForIndex:(int)x
 {
     int piece;
@@ -124,12 +129,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return moves;
 }
 
-- (double)currentFitness
+- (double)fitness
 {
-    unsigned me = [[self movesAvailable] count];
+    unsigned me = [[self legalMoves] count];
 
     player = player == White ? Black : White;
-    unsigned you = [[self movesAvailable] count];
+    unsigned you = [[self legalMoves] count];
 
     player = player == White ? Black : White;
     return (double)me - you;
@@ -137,13 +142,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (double)endStateScore
 {
-    if ([[self movesAvailable] count])
+    if ([[self legalMoves] count])
         [NSException raise:@"not an end state" format:@"still legal moves"];
 
-    return [self currentFitness];
+    return [self fitness];
 }
 
-- (NSArray *)movesAvailable
+- (NSArray *)legalMoves
 {
     id moves = [NSMutableArray array];
     for (int r = 0; r < 8; r++) {
@@ -176,7 +181,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     return moves;
 }
 
-- (void)transformWithMove:(id)move
+- (void)applyMove:(id)move
 {
     int r = [[move valueForKey:@"srcRow"] intValue];
     int c = [[move valueForKey:@"srcCol"] intValue];
@@ -188,22 +193,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     board[tr][tc] = p;
 
     remainingMoves[p]--;
-
-    player = player == White ? Black : White;
-}
-
-- (void)undoTransformWithMove:(id)move
-{
-    int r = [[move valueForKey:@"srcRow"] intValue];
-    int c = [[move valueForKey:@"srcCol"] intValue];
-    int tr = [[move valueForKey:@"dstRow"] intValue];
-    int tc = [[move valueForKey:@"dstCol"] intValue];
-
-    int p = board[tr][tc];
-    board[tr][tc] = Empty;
-    board[r][c] = p;
-
-    remainingMoves[p]++;
 
     player = player == White ? Black : White;
 }

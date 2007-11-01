@@ -1,22 +1,30 @@
 /*
-Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
+Copyright (c) 2006,2007 Stig Brautaset. All rights reserved.
 
-This file is part of AlphaBeta.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
 
-AlphaBeta is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+  Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
 
-AlphaBeta is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
 
-You should have received a copy of the GNU General Public License
-along with AlphaBeta; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  Neither the name of the author nor the names of its contributors may be used
+  to endorse or promote products derived from this software without specific
+  prior written permission.
 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #import "ReversiUnit.h"
@@ -48,13 +56,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)test01LegalMoves
 {
     id st = [ab currentState];
-    SBReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (unsigned)60, nil);
-    STAssertEquals(c.c[1], (unsigned)2, nil);
-    STAssertEquals(c.c[2], (unsigned)2, nil);
+    STAssertEquals([st playerCount], (unsigned)2, nil);
+    STAssertEquals([st opponentCount], (unsigned)2, nil);
 
     id moves;
-    STAssertNotNil(moves = [st movesAvailable], nil);
+    STAssertNotNil(moves = [st legalMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     int i;
     for (i = 0; i < 4; i++) {
@@ -71,55 +77,53 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)test02IllegalMoveThrows
 {
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
     id st = [ab currentState];
     
-    STAssertThrows([ab applyMove:[st moveForCol:0 andRow:0]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertThrows([ab performMove:[st moveForCol:0 andRow:0]], nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 
-    STAssertThrows([ab applyMove:[st moveForCol:0 andRow:-10]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertThrows([ab performMove:[st moveForCol:0 andRow:-10]], nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
     
-    STAssertThrows([ab applyMove:[st moveForCol:3 andRow:4]], nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    STAssertEquals([ab countMoves], (unsigned)0, nil);
+    STAssertThrows([ab performMove:[st moveForCol:3 andRow:4]], nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)0, nil);
 }
 
-- (void)test03PlayerTurn
+- (void)test03currentPlayer
 {
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 
-    [ab applyMoveFromSearchWithPly:1];
-    STAssertEquals([ab playerTurn], (unsigned)2, nil);
+    [ab performMoveFromSearchWithDepth:1];
+    STAssertEquals([ab currentPlayer], (unsigned)2, nil);
 
     [ab undoLastMove];
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
 }
 
 - (void)test04StateAndFitness
 {
-    STAssertTrue([ab playerTurn] == 1, nil);
+    STAssertTrue([ab currentPlayer] == 1, nil);
     STAssertTrue([ab currentFitness] == 0.0, @"got: %f", [ab currentFitness]);
 
     id st = [ab currentState];
-    SBReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (unsigned)60, nil);
-    STAssertEquals(c.c[1], (unsigned)2, nil);
-    STAssertEquals(c.c[2], (unsigned)2, nil);
+    STAssertEquals([st playerCount], (unsigned)2, nil);
+    STAssertEquals([st opponentCount], (unsigned)2, nil);
 
     STAssertEqualObjects([st description], @"1: 00000000 00000000 00000000 00021000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:3 andRow:2]];
+    st = [ab performMove:[st moveForCol:3 andRow:2]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-3.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"2: 00000000 00000000 00010000 00011000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:4 andRow:2]];
+    st = [ab performMove:[st moveForCol:4 andRow:2]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)0.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"1: 00000000 00000000 00012000 00012000 00012000 00000000 00000000 00000000", nil);
 
-    st = [ab applyMove:[st moveForCol:5 andRow:5]];
+    st = [ab performMove:[st moveForCol:5 andRow:5]];
     STAssertEqualsWithAccuracy([ab currentFitness], (double)-2.0, 0.0001, @"got %f", [st currentFitness]);
     STAssertEqualObjects([st description], @"2: 00000000 00000000 00012000 00012000 00011000 00000100 00000000 00000000", nil);
 }
@@ -137,11 +141,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         /* _Must_ finish in less time than the interval */
         STAssertTrue( duration < interval, @"%f <= %f", duration, interval);
 
-        /* We should really tolerate finishing up to 10% early... */
-        double accuracy = interval * 0.98;
+        /* We should really tolerate finishing up to 3% early... */
+        double accuracy = interval * 0.97;
         STAssertTrue( duration > accuracy, @"%f <= %f", duration, accuracy);
     }
 }
 
+- (void)test06iterativeSearchAlwaysReachesPly1
+{
+    STAssertNotNil([ab moveFromSearchWithInterval:0.0], nil);
+    STAssertEquals([ab stateCountForSearch], (unsigned)4, nil);
+    STAssertEquals([ab depthForSearch], (unsigned)1, nil);
+}
 
 @end

@@ -1,22 +1,30 @@
 /*
-Copyright (C) 2006,2007 Stig Brautaset. All rights reserved.
+Copyright (c) 2006,2007 Stig Brautaset. All rights reserved.
 
-This file is part of AlphaBeta.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
 
-AlphaBeta is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
+  Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
 
-AlphaBeta is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
 
-You should have received a copy of the GNU General Public License
-along with AlphaBeta; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  Neither the name of the author nor the names of its contributors may be used
+  to endorse or promote products derived from this software without specific
+  prior written permission.
 
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #import "ReversiUnit.h"
@@ -48,13 +56,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 - (void)test01LegalMoves
 {
     id st = [ab currentState];
-    SBReversiStateCount c = [st countSquares];
-    STAssertEquals(c.c[0], (unsigned)32, nil);
-    STAssertEquals(c.c[1], (unsigned)2, nil);
-    STAssertEquals(c.c[2], (unsigned)2, nil);
+    STAssertEquals([st playerCount], (unsigned)2, nil);
+    STAssertEquals([st opponentCount], (unsigned)2, nil);
     
     id moves;
-    STAssertNotNil(moves = [st movesAvailable], nil);
+    STAssertNotNil(moves = [st legalMoves], nil);
     STAssertEquals([moves count], (unsigned)4, nil);
     int i;
     for (i = 0; i < 4; i++) {
@@ -110,7 +116,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         nil] objectEnumerator];
     
     while (s = [states nextObject]) {
-        STAssertEqualObjects([[ab applyMoveFromSearchWithPly:3] description], s, nil);
+        STAssertEqualObjects([[ab performMoveFromSearchWithDepth:3] description], s, nil);
     }
     
     STAssertEquals([ab winner], (unsigned)2, @"player 2 won");
@@ -118,36 +124,36 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 - (void)test03WeirdExceptionCase
 {
-    SBReversiBase *st = [ab currentState];
+    SBReversiState *st = [ab currentState];
     st->player = 2;
     
     STAssertEqualObjects([st description], @"2: 000000 000000 002100 001200 000000 000000", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:2 andRow:4]] description], @"1: 000000 000000 002100 002200 002000 000000", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:3 andRow:4]] description], @"2: 000000 000000 002100 002100 002100 000000", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:2 andRow:4]] description], @"1: 000000 000000 002100 002200 002000 000000", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:3 andRow:4]] description], @"2: 000000 000000 002100 002100 002100 000000", nil);
 
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:4]] description], @"1: 000000 000000 002100 002200 002220 000000", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:3 andRow:5]] description], @"2: 000000 000000 002100 002100 002120 000100", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:4]] description], @"1: 000000 000000 002100 002200 002220 000000", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:3 andRow:5]] description], @"2: 000000 000000 002100 002100 002120 000100", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:3]] description], @"1: 000000 000000 002100 002220 002120 000100", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:4]] description], @"2: 000000 000000 002100 002210 002111 000100", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:3]] description], @"1: 000000 000000 002100 002220 002120 000100", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:4]] description], @"2: 000000 000000 002100 002210 002111 000100", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:5]] description], @"1: 000000 000000 002100 002210 002211 000120", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:5]] description], @"2: 000000 000000 002100 002210 002211 000111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:5]] description], @"1: 000000 000000 002100 002210 002211 000120", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:5]] description], @"2: 000000 000000 002100 002210 002211 000111", nil);
     
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:4 andRow:2]] description], @"1: 000000 000000 002220 002210 002211 000111", nil);
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:2 andRow:5]] description], @"2: 000000 000000 002220 002210 002111 001111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:4 andRow:2]] description], @"1: 000000 000000 002220 002210 002211 000111", nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:2 andRow:5]] description], @"2: 000000 000000 002220 002210 002111 001111", nil);
 
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:3]] description], @"1: 000000 000000 002220 002222 002111 001111", nil);
-    STAssertEquals([ab countMoves], (unsigned)11, nil);
-    STAssertNotNil([ab applyMoveFromSearchWithPly:3], nil);
-    STAssertEquals([ab countMoves], (unsigned)12, nil);
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:3]] description], @"1: 000000 000000 002220 002222 002111 001111", nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)11, nil);
+    STAssertNotNil([ab performMoveFromSearchWithDepth:3], nil);
+    STAssertEquals([ab countPerformedMoves], (unsigned)12, nil);
 
     /* Test for weird case where with finding moves */
     [ab undoLastMove];
-    STAssertEqualObjects([st = [ab applyMove:[st moveForCol:5 andRow:2]] description], @"2: 000000 000000 002221 002211 002111 001111", nil);
-    STAssertEquals([ab playerTurn], (unsigned)1, nil);
-    NSArray *a = [[ab currentState] movesAvailable];
+    STAssertEqualObjects([st = [ab performMove:[st moveForCol:5 andRow:2]] description], @"2: 000000 000000 002221 002211 002111 001111", nil);
+    STAssertEquals([ab currentPlayer], (unsigned)1, nil);
+    NSArray *a = [[ab currentState] legalMoves];
     STAssertEquals([a count], (unsigned)1, nil);
     STAssertTrue([[a lastObject] isKindOfClass:[NSNull class]], nil);
 }

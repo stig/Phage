@@ -26,7 +26,7 @@
 {
     STAssertEqualsWithAccuracy([state currentFitness], (double)0.0, 0.0, nil);
 
-    id moves = [state movesAvailable];
+    id moves = [state legalMoves];
     STAssertEquals([moves count], (unsigned)61, @"expected number of moves");
 
     /* test that first move is what we expect */
@@ -43,7 +43,7 @@
     STAssertEquals(state->board[4][6], (int)Dirty, nil);
     STAssertEquals(state->board[3][6], (int)(White | Circle), nil);
     
-    moves = [state movesAvailable];
+    moves = [state legalMoves];
     STAssertEquals([moves count], (unsigned)59, @"expected number of moves for black");
 
     [state undoTransformWithMove:move];
@@ -52,7 +52,7 @@
     STAssertEquals(state->board[4][6], (int)(White | Circle), nil);
     STAssertEquals(state->board[3][6], (int)Empty, nil);
 
-    moves = [state movesAvailable];
+    moves = [state legalMoves];
     STAssertEquals([moves count], (unsigned)61, @"expected number of moves again");
 }
 
@@ -91,7 +91,7 @@
     STAssertEquals([ab playerTurn], (unsigned)1, nil);
     state->board[5][6] = Empty;
     state->board[6][6] = Empty;
-    [ab applyMoveFromSearchWithInterval:0.3];
+    [ab performMoveFromSearchWithInterval:0.3];
     STAssertEquals([state endStateScore], (double)-1.0, nil);
     STAssertEquals([ab winner], (unsigned)1, nil);
 }

@@ -111,7 +111,7 @@ and updates views in between.
 /** Initiate a new game. */
 - (IBAction)newGame:(id)sender
 {
-    if ([alphaBeta countMoves]) {
+    if ([alphaBeta countPerformedMoves]) {
         [self newGameAlert];
     }
     else {
@@ -133,11 +133,11 @@ and updates views in between.
 {
     id st = nil;
     if (level < 4) {
-        st = [alphaBeta applyMoveFromSearchWithPly:level];
+        st = [alphaBeta performMoveFromSearchWithDepth:level];
     } else {
         int ply = level * 10.0;
         NSTimeInterval interval = (NSTimeInterval)(ply * ply / 1000.0);
-        st = [alphaBeta applyMoveFromSearchWithInterval:interval];
+        st = [alphaBeta performMoveFromSearchWithInterval:interval];
     }
 
     if (st) {
@@ -151,7 +151,7 @@ and updates views in between.
 - (void)move:(id)m
 {
     @try {
-        [alphaBeta applyMove:m];
+        [alphaBeta performMove:m];
     }
     @catch (id any) {
         NSLog(@"Illegal move attempted: %@", m);
@@ -176,11 +176,11 @@ and updates views in between.
         [self setAutomatic: NO];
         [self gameOverAlert];
     }
-    else if ([alphaBeta currentPlayerMustPass]) {
+    else if ([alphaBeta isForcedPass]) {
         [self passAlert];
     }
     
-    if ([self automatic] || [self ai] == [alphaBeta playerTurn]) {
+    if ([self automatic] || [self ai] == [alphaBeta currentPlayer]) {
         [progressIndicator startAnimation:self];
         [self aiMove];
         [progressIndicator stopAnimation:self];

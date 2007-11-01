@@ -37,7 +37,7 @@ enum {
     Dirty = 64,
 };
 
-@interface PhageState : NSObject <SBMutableAlphaBetaState> {
+@interface PhageState : NSObject <SBAlphaBetaSearching> {
 @public
     int player;
     int board[8][8];
